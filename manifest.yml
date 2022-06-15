@@ -1,0 +1,8 @@
+---
+applications:
+- name: ova-alpha
+  command: npm start
+  memory: 256M
+  buildpacks:
+  - nodejs_buildpack
+
