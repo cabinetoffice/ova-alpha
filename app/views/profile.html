@@ -14,18 +14,10 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        You are logged in as {{ user.name }}
+        You are logged in as {{ user.email }}
       </h1>
 
       <dl class="govuk-summary-list">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key govuk-!-width-one-third">
-            Nickname
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ user.nickname }}
-          </dd>
-        </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key govuk-!-width-one-third">
             Email
@@ -44,18 +36,26 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key govuk-!-width-one-third">
-            sub
+            Phone number
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ user.sub }}
+            {{ user.phone_number }}
           </dd>
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key govuk-!-width-one-third">
-            Updated
+            Phone number verified
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ user.updated_at }}
+            {{ user.phone_number_verified }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-third">
+            Subject (pairwise ID)
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ user.sub }}
           </dd>
         </div>
       </dl>
