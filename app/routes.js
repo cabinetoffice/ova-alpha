@@ -7,7 +7,6 @@ const pem2jwk = require('rsa-pem-to-jwk')
 
 // These keys are base64 encoded in .env
 const privatekey = Buffer.from(process.env.RSA_PRIVATE_KEY, 'base64').toString('utf8').replace(/\\n/gm, '\n')
-const publickey = Buffer.from(process.env.RSA_PUBLIC_KEY, 'base64').toString('utf8').replace(/\\n/gm, '\n')
 const cert = Buffer.from(process.env.CERT, 'base64').toString('utf8').replace(/\\n/gm, '\n')
 const jwk = pem2jwk(privatekey, { kid: '2022-06-ova-alpha', use: 'sig' }, 'private')
 
