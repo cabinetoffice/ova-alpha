@@ -98,7 +98,7 @@ router.post('/ask-apply-veteran-card-answer', function (req, res) {
 router.post('/verify-your-identity-answer', function (req, res) {
   const answer = req.session.data['verify-your-identity']
 
-  if (answer == 'verify-identity-photo-address') {
+  if (answer === 'verify-identity-photo-address') {
     res.redirect('/upload_photo_passport')
   } else {
     res.redirect('/upload_photo_drivers_licence')
@@ -108,7 +108,7 @@ router.post('/verify-your-identity-answer', function (req, res) {
 router.post('/govuk-prove-id-start-answer', function (req, res) {
   const answer = req.session.data['govuk-prove-id-confirmation-check']
 
-  if (answer == 'govuk-prove-id-confirmation-check-agree') {
+  if (answer === 'govuk-prove-id-confirmation-check-agree') {
     res.redirect('/govuk_prove_id_explanation')
   } else {
     res.redirect('/govuk_prove_id_start_no_confirm')
