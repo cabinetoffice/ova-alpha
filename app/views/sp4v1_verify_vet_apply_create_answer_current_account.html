@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/sp4v1_verify_vet_apply_create_answer_phone_contract">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+      When did you open your current account?
+      </h1>
+      
+      <form class="form" action="sp4v1_verify_vet_apply_create_success" method="post">
+
+      {{ govukRadios({
+        idPrefix: "sp4v1_verify_vet_apply_create_answer_phone_contract",
+        name: "sp4v1_verify_vet_apply_create_answer_phone_contract",
+        fieldset: {
+          legend: {
+            text: "",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--xl"
+          }
+        },
+        hint: {
+          text: "Think about your current account only. This does not include any joint, business or saving account you might have."
+        },
+        items: [
+          {
+            value: "05/2018",
+            text: "05/2018"
+          },
+          {
+            value: "01/2019",
+            text: "01/2019"
+          },
+          {
+            value: "08/2021",
+            text: "08/2021"
+          },
+          {
+            value: "11/2020",
+            text: "11/2020"
+          },
+          {
+            value: "None of the above / Does not apply",
+            text: "None of the above / Does not apply"
+          }
+        ]
+      }) }}
+      
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        
+       </form>
+
+    </div>
+ </div>
+
+{% endblock %}

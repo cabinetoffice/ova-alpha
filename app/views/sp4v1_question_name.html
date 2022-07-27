@@ -1,0 +1,107 @@
+{% extends "layout.html" %} {% block pageTitle %} Question page template – {{
+serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+<a class="govuk-back-link" href="/sp4v1_apply_behalf_someone_else_radio">Back</a>
+{% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">
+      Full name at time of discharge from the armed services
+    </h1>
+
+    <form class="form" action="question_DOB" method="post">
+    
+      {{ govukSelect(
+        { id: "sp4v1_question_name", 
+          name: "sp4v1_question_name",
+          label: { text: "Title (optional)" },
+          classes:"govuk-input--width-10",
+          items: [ 
+                   { value: "", text: "", selected: true }, 
+                   { value: "mr", text: "Mr"}, 
+                   { value: "mrs", text: "Mrs"}, 
+                   { value: "ms", text: "Ms" }, 
+                   { value: "mx", text: "Mx" } 
+                  ] }) }} 
+      
+      {{
+      govukInput(
+        { label: { text: "First name" }, 
+          classes:"govuk-input--width-30", 
+          id: "sp4v1_question_name_first_name", 
+          name: "sp4v1_question_name_first_name",
+          value: data["sp4v1_question_name_first_name"] }) }} 
+      
+      {{ govukInput(
+        { label: { text: "Last name" }, 
+          classes: "govuk-input--width-30", 
+          id: "sp4v1_question_name_last_name", 
+          name: "sp4v1_question_name_last_name",
+          value: data["sp4v1_question_name_last_name"] }) }}
+
+      <h3 class="govuk-heading-m">Have you ever changed your name?</h3>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="previous-names">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading"></h1>
+          </legend>
+          <div id="sp4v1_question_name_changed_hint" class="govuk-hint">
+            You’ll only need to answer 'Yes' if your information might be held
+            under another name
+          </div>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input
+                class="govuk-radios__input"
+                id="sp4v1_question_name_change_yes"
+                name="sp4v1_question_name_change"
+                type="radio"
+                value="yes"
+                data-aria-controls="conditional-contact"
+              />
+              <label class="govuk-label govuk-radios__label" for="sp4v1_question_name_change">
+                Yes
+              </label>
+            </div>
+            <div
+              class="govuk-radios__conditional govuk-radios__conditional--hidden"
+              id="conditional-contact"
+            >
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="more-detail">
+                  Tell us any other names your information may be held under
+                </label>
+                <textarea
+                  class="govuk-textarea"
+                  id="more-detail"
+                  name="more-detail"
+                  rows="5"
+                  aria-describedby="more-detail-hint"
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input
+                class="govuk-radios__input"
+                id="sp4v1_question_name_change_no"
+                name="sp4v1_question_name_change"
+                type="radio"
+                value="no"
+              />
+              <label class="govuk-label govuk-radios__label" for="sp4v1_question_name_change">
+                No
+              </label>
+            </div>
+            
+          </div>
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

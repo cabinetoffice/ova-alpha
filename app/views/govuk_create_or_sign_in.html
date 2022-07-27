@@ -1,0 +1,30 @@
+{% extends "layout.html" %} {% block pageTitle %} Question page template – {{
+serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+<a class="govuk-back-link" href="/govuk_prove_id_explanation">Back</a>
+{% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Create a GOV.UK account or sign in</h1>
+
+    <p>You'll need:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>an email address</li>
+      <li>a UK mobile phone number</li>
+    </ul>
+
+    <form class="form" action="govuk_question_email" method="post">
+      <button class="govuk-button" data-module="govuk-button">
+        Create a GOV.UK account
+      </button>
+    </form>
+
+    <p>If you already have a GOV.UK account you can <a href="">sign in</a></p>
+
+    {{ govukDetails({ summaryText: "About GOV.UK", text: "If you are unable to
+    upload any documents then you can also verify your identity by post or in
+    person at your local drop in centre." }) }}
+  </div>
+</div>
+
+{% endblock %}

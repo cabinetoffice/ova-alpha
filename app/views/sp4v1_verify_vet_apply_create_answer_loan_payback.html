@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/sp4v1_verify_vet_apply_create_answer_mortgage">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+      How much of your loan do you pay back every month?
+      </h1>
+      
+      <form class="form" action="sp4v1_verify_vet_apply_create_answer_phone_contract" method="post">
+
+      {{ govukRadios({
+        idPrefix: "sp4v1_verify_vet_apply_create_answer_loan_payback",
+        name: "sp4v1_verify_vet_apply_create_answer_loan_payback",
+        fieldset: {
+          legend: {
+            text: "",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--xl"
+          }
+        },
+        hint: {
+          text: "Think about the amount you agreed to pay back every month on a personal loan. This does not include hire purchase agreements, second mortgages, home credit loans or student loans. You can find this amount on your loan agreement."
+        },
+        items: [
+          {
+            value: "Up to £200",
+            text: "Up to £200"
+          },
+          {
+            value: "Over £200 up to £400",
+            text: "Over £200 up to £400"
+          },
+          {
+            value: "Over £400 up to £600",
+            text:  "Over £400 up to £600"
+          },
+          {
+            value: "Over £600 up to £800",
+            text: "Over £600 up to £800"
+          },
+          {
+            value: "None of the above / Does not apply",
+            text: "None of the above / Does not apply"
+          }
+        ]
+      }) }}
+      
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        
+       </form>
+
+    </div>
+ </div>
+
+{% endblock %}

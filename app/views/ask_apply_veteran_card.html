@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Start page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+    
+    <a class="govuk-back-link" href="/question_discharge_date">Back</a>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+       Do you want to apply for a Veteran ID card?
+      </h1>
+      
+      <p>You have completed step one, which confirms that you have served in HM armed forces.</p>
+      
+      <p>You can proceed to apply for a Veteran ID card.</p>
+      
+      <p>If you would rather not have a card, you can proceed to receive confirmation of service by email.</p>
+      
+       <form class="form" action="ask-apply-veteran-card-answer" method="post">
+      
+          {{ govukRadios({
+        idPrefix: "ask-apply-veteran-card",
+        name: "ask-apply-veteran-card",
+        fieldset: {
+          legend: {
+            text: "",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+        
+         <button class="govuk-button" data-module="govuk-button">Continue</button>
+      </form>
+
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+    </div>
+  </div>
+{% endblock %}

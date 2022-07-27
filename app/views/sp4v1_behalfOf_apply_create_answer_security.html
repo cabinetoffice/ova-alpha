@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/sp4v1_behalfOf_apply_create_check_details">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+      Answer security questions
+      </h1>
+      
+      <p>We'll ask you some security questions that only you should know the answers to. This will help us to stop anyone else who might have your details from pretending to be you.</p>
+      
+      <p>These questions will be about things like your mobile phone contract, bank account, and any credit cards, loans or mortgages you have.</p>
+       
+       {{ govukWarningText({
+        text: "Try to answer these questions as accurately as you can. You will not be able to change answers if you make a mistake",
+        iconFallbackText: "Warning"
+      }) }}
+       
+      <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Who we check your details with
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+           We'll work with Experian to make sure we ask you questions that only you can answer. This is because companies like Experian have access to lots of information that we can check your answers against.
+          </div>
+          <div class="govuk-details__text">
+           Read our privacy notice if you'd like to know more about how your details will be used to prove your identity.
+          </div>
+       </details>
+     
+      
+      <form class="form" action="sp4v1_behalfOf_apply_create_answer_mortgage" method="post">
+      
+       <button class="govuk-button" data-module="govuk-button">Start</button>
+       
+       </form>
+
+    </div>
+ </div>
+
+{% endblock %}

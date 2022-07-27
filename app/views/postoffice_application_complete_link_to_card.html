@@ -1,0 +1,45 @@
+{% extends "layout.html" %} 
+
+{% block pageTitle %} 
+ GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit 
+ {% endblock %} 
+ 
+ {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p>Dear Veteran,</p>
+
+    <p>To receive a veteran card we need to prove your identity.</p>
+
+    <p>
+      Please take your identification documents to your nearest post office:
+    </p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        <a href="https://www.postoffice.co.uk/branch-finder" target="_new"
+          >Find your nearest branch</a
+        >
+      </li>
+      <li><a href="#" target="_new">Identification documents we accept</a></li>
+    </ul>
+
+    <p>
+      Present your identification documents alongside this email and QR code at
+      your nearest post office.
+    </p>
+
+    <p>
+      We will send you updates via email about the progress of your application.
+    </p>
+
+    <p>Thank you for applying via our service.</p>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <h2 class="govuk-heading-m"></h2>
+    
+    <img src="../public/images/qr_code_post_office.png" alt="qr code post office" style="width:250px;height:250px;">
+  </div>
+</div>
+
+{% endblock %}

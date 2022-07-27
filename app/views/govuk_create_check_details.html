@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/govuk_create_home_postcode">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+      We need to check your details
+      </h1>
+      
+      <p>Your details will be checked against information held by another company.</p>
+      
+      <p>This will help us protect you against online identity theft.</p>
+       
+       <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Who we check your details with
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+           We'll check your details with Experian. This is because companies like Experian have access to information about interactions you've previously had with other organisations.
+          </div>
+          <div class="govuk-details__text">
+           <a href="#" target="_new">Read our privacy notice if you'd like to know more about how your details will be used to prove your identity.
+          </div>
+       </details>
+     
+      
+      <form class="form" action="govuk_create_answer_security" method="post">
+      
+       <button class="govuk-button" data-module="govuk-button">Continue</button>
+       
+       </form>
+
+    </div>
+ </div>
+
+{% endblock %}

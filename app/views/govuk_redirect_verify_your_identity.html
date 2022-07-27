@@ -1,0 +1,50 @@
+{% extends "layout.html" %} {% block pageTitle %} Question page template – {{
+serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+<a class="govuk-back-link" href="/govuk_prove_id_explanation">Back</a>
+{% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Verify your identity</h1>
+
+    <p>
+      You need to verify your identity before we can process your request. You
+      will need to upload a scan or photo of an approved identity document
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        If your passport has expired, you can still use it to prove your
+        identity up until 18 months after the expiry date
+      </li>
+    </ul>
+
+    <p>
+      If you are using a desktop or laptop, you will need the scan or photo
+      saved as a file on your computer.
+    </p>
+
+    <p>
+      If you are using a mobile or tablet, you will be able to upload a photo on
+      the next page.
+    </p>
+
+    {{ govukDetails({ summaryText: "I can't upload any documents", text: "If you
+    are unable to upload any documents then you can also verify your identity by
+    post or in person at your local drop in centre." }) }}
+
+    <form class="form" action="/verify-your-identity-answer" method="post">
+      {{ govukRadios({ idPrefix: "verify-your-identity", name:
+      "verify-your-identity", fieldset: { legend: { text: "How would you like to
+      verify your identity?", isPageHeading: false, classes:
+      "govuk-fieldset__legend--m" } }, items: [ { value:
+      "verify-identity-photo-address", text: "Upload a photo of my passport and
+      proof of address" }, { value: "verify-identity-photo-driving-licence",
+      text: "Upload a photo of my photocard driving licence" } ] }) }}
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

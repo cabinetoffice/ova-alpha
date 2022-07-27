@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/sp4v1_verify_vet_question_discharge_date">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+      Prove veteran identity to continue
+      </h1>
+      
+      <h3 class="govuk-heading-s">Prove veteran status for access to services</h3>
+      
+      <p>To prove veteran status you need to prove their identity.</p>
+      
+      <p>You will need:</p>
+        <ul class="govuk-list govuk-list--bullet">      
+          <li>a picture of their passport</li>
+          <li>a picture of their driving licence</li>
+        </ul>
+      
+       <h3 class="govuk-heading-s">Apply for a veteran card</h3>
+       
+       <p>To prove identity for a veteran card online, you will need:</p>
+       
+        <p>You will need:</p>
+        <ul class="govuk-list govuk-list--bullet">
+           <li>their passport information</li>
+           <li>
+            all addresses for the past 5 years and the
+            dates lived at
+          </li>
+          <li>answers to questions about their finances, such as any mortgages and loans, if applicable</li>
+        </ul>
+      
+      <form class="form" action="sp4v1_verify_vet_prove_id_to_continue_radio_answer" method="post">
+      
+          {{ govukRadios({
+              idPrefix: "sp4v1_verify_vet_prove_id_to_continue_radio",
+              name: "sp4v1_verify_vet_prove_id_to_continue_radio",
+              fieldset: {
+                legend: {
+                  text: "",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              items: [
+                {
+                  value: "sp4v1_verify_vet_prove_id_to_continue_radio_prove_veteran",
+                  text: "Prove veteran status only",
+                  checked: checked("sp4v1_verify_vet_prove_id_to_continue_radio", "sp4v1_verify_vet_prove_id_to_continue_radio_prove_veteran")
+                },
+                {
+                  value: "sp4v1_verify_vet_prove_id_to_continue_radio_apply_veteran",
+                  text: "Apply for a veteran card",
+                  checked: checked("sp4v1_verify_vet_prove_id_to_continue_radio", "sp4v1_verify_vet_prove_id_to_continue_radio_apply_veteran")
+                }
+              ]
+          }) }}
+          
+          {{ govukDetails({
+            summaryText: "What does a veteran card do?",
+            text: "A veteran card will act as proff of veteran status and be widely accepted by British services and institutions."
+          }) }}
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+
+    </div>
+ </div>
+
+{% endblock %}

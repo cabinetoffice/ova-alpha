@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/sp4v1_verify_vet_apply_upload_photo">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="sp4v1_verify_vet_apply_question_id_choice_answer" method="post">
+
+       {{ govukRadios({
+        idPrefix: "sp4v1_verify_vet_apply_question_id_choice",
+        name: "sp4v1_verify_vet_apply_question_id_choice",
+        fieldset: {
+          legend: {
+            text: "How do you want your veteran card?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "sp4v1_verify_vet_apply_question_id_choice_physical_card",
+            text: "Physical card",
+            checked: checked("sp4v1_verify_vet_apply_question_id_choice", "sp4v1_verify_vet_apply_question_id_choice_physical_card")
+          },
+          {
+            value: "sp4v1_verify_vet_apply_question_id_choice_digital_card",
+            text: "Digital card",
+            checked: checked("sp4v1_verify_vet_apply_question_id_choice", "sp4v1_verify_vet_apply_question_id_choice_digital_card")
+          },
+          {
+            value: "sp4v1_verify_vet_apply_question_id_choice_both",
+            text: "Both",
+            checked: checked("sp4v1_verify_vet_apply_question_id_choice", "sp4v1_verify_vet_apply_question_id_choice_both")
+          }
+        ]
+      }) }}
+       
+       {{ govukDetails({
+        summaryText: "How do I use my card",
+        text: "Your card will have a unique card number which some services may ask for. You can use your digital or physicalID card in the same way to prove your veteran status"
+      }) }}
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
