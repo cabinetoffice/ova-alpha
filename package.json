@@ -71,7 +71,12 @@
     ],
     "env": {
       "cypress/globals": true
-    }
+    },
+    "ignore": [
+      "/server.js",
+      "/__tests__/*",
+      "/cypress/*"
+    ]
   },
   "jest": {
     "testPathIgnorePatterns": [
