@@ -1,0 +1,59 @@
+{% extends "layout.html" %} {% block pageTitle %} Question page template – {{
+serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+<a class="govuk-back-link" href="/sp4v1_verify_vet_prove_id_to_continue">Back</a>
+{% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Identity verification</h1>
+
+    <p>
+      You need to verify identity to continue You
+      will need to upload a scan or photo of an approved identity document
+    </p>
+    
+    <p>
+      You will need to upload a scan or photo of an approved identity document
+    </p>
+
+    <form class="form" action="/sp4v1_verify_vet_upload_photo" method="post">
+      {{ govukRadios({ 
+                      idPrefix: "sp4v1_verify_vet_verify_your_identity", 
+                      name:
+      "sp4v1_verify_vet_verify_your_identity", 
+      fieldset: 
+      { legend: 
+       { text: "How would you like to
+      verify identity?", 
+      isPageHeading: false, 
+      classes:
+      "govuk-fieldset__legend--m" } }, 
+      items: [ 
+              { value:
+      "sp4v1_verify_vet_verify-identity-photo-address", 
+      text: "Upload a photo of passport and
+      proof of address" }, 
+              { value: "sp4v1_verify_vet_verify-identity-photo-driving-licence",
+      text: "Upload a photo of photocard driving licence" } 
+              ] 
+      }) }}
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+    </form>
+    
+     <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          I don't have these documents
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        If you are unable to provide these documents then you can also verify your
+        identity  <a href="https://www.postoffice.co.uk/identity" target="_new">by post</a> or in person at your
+        <a href="https://www.postoffice.co.uk/branch-finder" target="_new">nearest post office</a>.
+      </div>
+    </details>
+  </div>
+</div>
+
+{% endblock %}

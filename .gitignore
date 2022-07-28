@@ -18,3 +18,4 @@ node_modules/
 /cypress/support
 /cypress/temp
 tmp/
+/__tests__/*

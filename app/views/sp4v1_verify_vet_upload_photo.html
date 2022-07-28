@@ -1,0 +1,23 @@
+{% extends "layout.html" %} {% block pageTitle %} Question page template – {{
+serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+<a class="govuk-back-link" href="/sp4v1_verify_vet_verify_your_identity">Back</a>
+{% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Upload a photo of documentation</h1>
+
+    <form class="form" action="/sp4v1_verify_vet_application_complete" method="post">
+      {% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+      {{ govukFileUpload(
+        { id: "file-upload-1", 
+         name: "file-upload-1", 
+         label: {
+         text: "Upload a file" } }) }} 
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

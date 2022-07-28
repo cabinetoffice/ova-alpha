@@ -5,7 +5,7 @@ const path = require('path')
 
 const repoDir = path.resolve(__dirname, '..', '..')
 
-var _releaseVersion
+let _releaseVersion
 
 /**
  * Returns the temporary directory path for this jest process
@@ -55,7 +55,7 @@ function mkReleaseArchiveSync ({ archiveType = 'zip', dir } = {}) {
   try {
     fs.accessSync(archive)
   } catch (err) {
-    _mkReleaseArchiveSync({ archive: archive, prefix: name })
+    _mkReleaseArchiveSync({ archive, prefix: name })
   }
 
   return archive

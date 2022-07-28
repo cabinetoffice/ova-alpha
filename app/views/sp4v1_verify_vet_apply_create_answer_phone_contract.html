@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/sp4v1_verify_vet_apply_create_answer_loan_payback">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+      When did you take out your mobile phone contract?
+      </h1>
+      
+      <form class="form" action="sp4v1_verify_vet_apply_create_answer_current_account" method="post">
+
+      {{ govukRadios({
+        idPrefix: "gsp4v1_verify_vet_apply_create_answer_phone_contract",
+        name: "gsp4v1_verify_vet_apply_create_answer_phone_contract",
+        fieldset: {
+          legend: {
+            text: "",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--xl"
+          }
+        },
+        hint: {
+          text: "Think about when you took out your personal phone contract instead of your work phone, if you have one."
+        },
+        items: [
+          {
+            value: "04/2017",
+            text: "04/2017"
+          },
+          {
+            value: "10/2017",
+            text: "10/2017"
+          },
+          {
+            value: "03/2021",
+            text: "03/2021"
+          },
+          {
+            value: "01/2021",
+            text: "01/2021"
+          },
+          {
+            value: "None of the above / Does not apply",
+            text: "None of the above / Does not apply"
+          }
+        ]
+      }) }}
+      
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        
+       </form>
+
+    </div>
+ </div>
+
+{% endblock %}

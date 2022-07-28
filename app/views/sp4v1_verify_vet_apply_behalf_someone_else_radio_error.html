@@ -1,0 +1,60 @@
+{% extends "layout.html" %} {% block pageTitle %} Question page template – {{
+serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+<a class="govuk-back-link" href="/sp4v1_verify_vet_start">Back</a>
+{% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+  
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [
+        {
+          text: "Please select 'Yes' or 'No' to continue",
+          href: "/sp4v1_apply_behalf_someone_else_radio"
+        }
+      ]
+    }) }}
+  
+    <h1 class="govuk-heading-l">
+      Are you applying on behalf of someone else?
+    </h1>
+
+    <form class="form" action="sp4v1_verify_vet_question_email" method="post">
+    
+      {{ govukRadios({
+        idPrefix: "sp4v1_apply_behalf_someone_else_radio",
+        name: "sp4v1_apply_behalf_someone_else_radio",
+        fieldset: {
+          legend: {
+            text: "",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "sp4v1_apply_behalf_someone_else_radio_yes",
+            text: "Yes",
+            checked: checked("sp4v1_apply_behalf_someone_else_radio", "sp4v1_apply_behalf_someone_else_radio_yes")
+          },
+          {
+            value: "sp4v1_apply_behalf_someone_else_radio_no",
+            text: "No",
+            checked: checked("sp4v1_apply_behalf_someone_else_radio", "sp4v1_apply_behalf_someone_else_radio_no")
+          }
+        ],
+        errorMessage: {
+          text: "Please select 'Yes' or 'No' to continue"
+        }
+      }) }}
+      
+      <button class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+    
+  </div>
+</div>
+
+{% endblock %}

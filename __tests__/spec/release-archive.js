@@ -6,8 +6,8 @@ const path = require('path')
 const utils = require('./utils')
 
 describe('release archive', () => {
-  var archivePath
-  var archiveFiles
+  let archivePath
+  let archiveFiles
 
   beforeAll(() => {
     archivePath = utils.mkReleaseArchiveSync()

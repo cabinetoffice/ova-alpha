@@ -1,0 +1,71 @@
+{% extends "layout.html" %} {% block pageTitle %} Question page template – {{
+serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+<a class="govuk-back-link" href="/govuk_prove_id_start">Back</a>
+{% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Prove your identity with a GOV.UK account</h1>
+
+    <p>
+      You can currently only prove your identity with your GOV.UK account if you
+      have a UK passport.
+    </p>
+
+    {{ govukInsetText({ text: "If your passport has expired, you can still use
+    it to prove your identity up until 18 months after the expiry date." }) }}
+
+    <p>
+      You do not need to have your passport on you if you can remember the
+      details on it.
+    </p>
+
+    <h3 class="govuk-heading-m">What you need to do</h3>
+
+    <p>It will take you about 10 minutes to prove your identity this way.</p>
+
+    {{ govukInsetText({ text: "This service is currently only available in
+    English." }) }}
+
+    <p>
+      You'll need to create or sign in to your GOV.UK account first. We'll then
+      ask you for your current address and passport details.
+    </p>
+
+    <p>
+      We'll also ask you some security questions that only you should know the
+      answers to. You might find it easier to answer these questions if you have
+      information about:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>your mobile phone contract</li>
+      <li>your bank account</li>
+      <li>any credit card, loans or mortgages yiu have</li>
+    </ul>
+
+    <p>
+      We'll only use the information you give us to make sure that you are who
+      you say you are.
+    </p>
+
+    <form class="form" action="govuk_create_or_sign_in" method="post">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Would you like to prove your identity another way?
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          If you are unable to upload any of the necessary documents then you
+          can also verify your identity <a href="#">by post</a> or in person at
+          your <a href="#">local drop in centre</a>.
+        </div>
+      </details>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

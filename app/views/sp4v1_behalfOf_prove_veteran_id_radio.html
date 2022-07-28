@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Start page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+    
+    <a class="govuk-back-link" href="/sp4v1_behalfOf_question_discharge_date">Back</a>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+       Prove veteran identity to continue
+      </h1>
+      
+      <h3 class="govuk-heading-s">Apply for a veteran card</h3>
+      
+      <p>To help someone apply for a veteran card you will need to assist them in proving their identity online. This will involve answering some security questions.</p>
+      
+      <p>You will need:</p>
+      
+       <ul class="govuk-list govuk-list--bullet">
+        <li>their passport information</li>
+        <li>answers to questions about their financial details, such as mortgages and loans</li>
+        <li>their addresses for the past 5 years</li>
+      </ul>
+      
+      <h3 class="govuk-heading-s">Prove veteran status for access to services</h3>
+      
+      
+      <p>If you are assisting a veteran to prove their veteran status only, you will still need to prove their identity.</p>
+      
+      <p>You will need:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>a picture of their passport</li>
+        <li>a picture of their driving licence</li>
+        <li>their addresses for a period of 5 years</li>
+      </ul>
+      
+      <form class="form" action="sp4v1_behalfOf_prove_veteran_id_radio_answer" method="post">
+      
+          {{ govukRadios({
+              idPrefix: "sp4v1_behalfOf_prove_veteran_id_radio",
+              name: "sp4v1_behalfOf_prove_veteran_id_radio",
+              fieldset: {
+                legend: {
+                  text: "",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--l"
+                }
+              },
+              items: [
+                {
+                  value: "sp4v1_behalfOf_prove_veteran_id_radio_govuk_account",
+                text: "Apply for a veteran card",
+                checked: checked("sp4v1_behalfOf_prove_veteran_id_radio", "sp4v1_behalfOf_prove_veteran_id_radio_govuk_account")
+              },
+              {
+                value: "sp4v1_behalfOf_prove_veteran_id_radio_govuk_verify",
+                text: "Prove veteran status only",
+                checked: checked("sp4v1_behalfOf_prove_veteran_id_radio", "sp4v1_behalfOf_prove_veteran_id_radio_govuk_verify")
+                
+              }
+              ]
+          }) }}
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+{% endblock %}

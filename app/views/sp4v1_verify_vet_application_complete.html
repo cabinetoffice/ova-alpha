@@ -1,0 +1,25 @@
+{% extends "layout.html" %} {% block pageTitle %} GOV.UK page template – {{
+serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukPanel({ titleText: "Application complete", html: "Your reference
+    number<br /><strong>VERIFY4123G</strong>" }) }}
+
+    <p>We have sent you a confirmation email.</p>
+
+    <h3 class="govuk-heading-m">What happens next</h3>
+
+    <p>We will email you about your request in the next 24 hours</p>
+
+    <form class="form" action="sp4v1_verify_vet_application_complete_link_to_card" method="post">
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+    </form>
+    
+     <p>
+      <a href="#" target="_new">What did you think of this service?</a> (takes 30 seconds)
+    </p>
+  </div>
+</div>
+
+{% endblock %}

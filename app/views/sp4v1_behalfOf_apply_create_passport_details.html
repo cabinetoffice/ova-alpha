@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/sp4v1_behalfOf_apply_create_check_email">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    
+      <h1 class="govuk-heading-l">
+        Enter your details exactly as they appear on your passport
+      </h1>
+      
+      <p>Your passport includes a lot of information that we can check to make sure that you are who you say you are.</p>
+      
+      <p>We'll check your details with the HM Passport Office to make sure your passport has not been cancelled or reported as lost or stolen.</p>
+      
+      <form class="form" action="sp4v1_behalfOf_apply_create_home_postcode" method="post">
+      
+      {{ govukInput({
+        label: {
+          text: "Passport number"
+        },
+        classes: "govuk-input--width-10",
+        hint: {
+          text: "This is the 9 digit number in the top right hand corner of the photo page in your passport"
+        },
+        id: "govuk-create-passport-number",
+        name: "govuk-create-passport-number"
+      }) }}
+      
+       {{ govukInput({
+        label: {
+          text: "Surname"
+        },
+        classes: "govuk-input--width30",
+        id: "govuk-create-passport-surname",
+        name: "govuk-create-passport-surname"
+      }) }}
+       
+      {{ govukInput({
+        label: {
+          text: "First name"
+        },
+        classes: "govuk-input--width30",
+        id: "govuk-create-passport-given-name",
+        name: "govuk-create-passport-given-name"
+      }) }}
+      
+      {{ govukInput({
+        label: {
+          text: "Middle names"
+        },
+        classes: "govuk-input--width30",
+        hint: {
+          text: "You do not have to fill this in if you do not have any middle names"
+        },
+        id: "govuk-create-passport-middlename",
+        name: "govuk-create-passport-middlename"
+      }) }}
+       
+       {{ govukDateInput({
+        id: "govuk-create-passport-expiry",
+        namePrefix: "govuk-create-passport-expiry",
+        fieldset: {
+          legend: {
+            text: "Expiry date"
+          }
+        },
+        hint: {
+          text: "For example, 27 5 2032"
+        }
+      }) }}
+       
+       {{ govukDateInput({
+        id: "govuk-create-passport-dob",
+        namePrefix: "govuk-create-passport-dob",
+        fieldset: {
+          legend: {
+            text: "Date of birth"
+          }
+        },
+        hint: {
+          text: "For example, 5 9 1960"
+        }
+      }) }}
+       
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

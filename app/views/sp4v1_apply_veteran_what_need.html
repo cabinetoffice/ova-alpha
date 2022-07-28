@@ -1,0 +1,149 @@
+{% extends "layout.html" %} {% block pageTitle %} Start page template – {{
+serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block header %}
+<!-- Blank header with no service name for the start page -->
+{{ govukHeader() }} {% endblock %} {% block beforeContent %}
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Section</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link">Subsection</a>
+    </li>
+  </ol>
+</div>
+
+<a class="govuk-back-link" href="/sp4v1_start_veteran_verify">Back</a>
+{% endblock %} 
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">What you'll need</h1>
+    
+    <p>We need to ask you some details about yourself and the information you are requesting. This is to ensure that only veterans or people who have permission to access their records use this service.</p>
+    
+    <h3 class="govuk-heading-m">Verifying your identity</h3>
+    
+    <p>
+     As part of this service you will need to verify your identity.
+    </p>
+    
+    <p>
+     You can do this by:
+    </p>
+    
+    <ul class="govuk-list govuk-list--bullet">
+      <li>using the online GOV.UK Digital Identity service</li>
+      <li>applying by post <a href="https://www.postoffice.co.uk/identity" target="_new">(opens in a new tab)</a></li>
+      <li>going to the Post Office and using the in-branch verification service</li>
+    </ul>
+    
+    <p>
+     GOV.UK Digital Identity is a service which allows you to create a secure online account to store and access your data so that you can access government services without having to enter personal information again each time.
+    </p>
+    
+    <p>
+     If you already have an account sign in:
+    </p>
+     <form class="form" action="#" method="post">
+      <button class="govuk-button" data-module="govuk-button">Sign in</button>
+    </form>
+    
+    <p>
+     To create a GOV.UK Digital Identity account you will need:
+    </p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>your passport</li>
+      <li>your driving licence</li>
+      <li>addresses for the last 5 years and the dates you lived at them</li>
+    </ul>
+    
+    <p>We will also ask you some security questions that only you should know the answers to. These could be questions about:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>your mobile phone contract</li>
+      <li>your bank account</li>
+      <li>any credit cards, loans or mortgages you have</li>
+    </ul>
+     <p>
+     We'll use the information you give us to make sure that you are who you say you are.
+    </p>
+    
+    
+  
+    
+    <h3 class="govuk-heading-m">Supporting someone else to apply for a veteran card</h3>
+    
+    <p>
+    To support someone else to apply for a veteran card, you need to provide proof that you have the authority to verify their status.
+    </p>
+    
+    <p>
+    We'll ask you to upload either:
+    </p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>the person's written consent from you to access their information</li>
+      <li>a court order (for example, power of attorney) permitting the release of the information requested</li>
+       <li>evidence that you work for one of the approved services that are authorised to verify a veteran's status</li>
+    </ul>
+    
+    <p>
+     If you cannot provide any of these you'll need to apply by post instead  <a href="https://www.postoffice.co.uk/identity" target="_new">(opens in a new tab)</a>
+    </p>
+    
+    
+    <form class="form" action="sp4v1_apply_behalf_someone_else_radio" method="post">
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+    </form>
+  </div>
+
+
+  <div class="govuk-grid-column-one-third">
+    <aside class="app-related-items" role="complementary">
+      <h2 class="govuk-heading-m" id="subsection-title">Related content</h2>
+      <nav role="navigation" aria-labelledby="subsection-title">
+        <ul class="govuk-list govuk-!-font-size-16">
+        <li>
+            <a href="https://www.gov.uk/government/organisations/veterans-uk">
+              Request records of deceased service personnel
+            </a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/government/organisations/veterans-uk">
+              Military service records
+            </a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/government/organisations/veterans-uk">
+              Military service request forms
+            </a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/government/organisations/veterans-uk">
+              Military service search forms
+            </a>
+          </li>
+          <li>
+            <a href="#">Ministry of Defence medal form</a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/government/organisations/veterans-uk">
+              Veterans UK
+            </a>
+          </li>
+           <li>
+            <a href="https://www.gov.uk/government/organisations/veterans-uk">
+              Verify a veteran
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+</div>
+{% endblock %}

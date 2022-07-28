@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/sp4v1_verify_vet_apply_behalf_someone_else_radio">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">The email address you would like us to contact you at</h1>
+      
+
+      <form class="form" action="sp4v1_verify_vet_question_name" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "",
+            isPageHeading: false
+        },
+        classes: "govuk-input--width-20",
+        id: "govuk_question_email",
+        name: "govuk_question_email"
+        }) }}
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

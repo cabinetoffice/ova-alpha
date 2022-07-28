@@ -1,0 +1,116 @@
+{% extends "layout.html" %} {% block pageTitle %} Start page template – {{
+serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block header %}
+<!-- Blank header with no service name for the start page -->
+{{ govukHeader() }} {% endblock %} {% block beforeContent %}
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Section</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link">Subsection</a>
+    </li>
+  </ol>
+</div>
+{% endblock %} {% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Apply for a veteran card</h1>
+
+    <p>Use this service to:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Apply for a veteran card</li>
+    </ul>
+
+    <p>
+      You can do this for yourself, or on behalf of another living person if you
+      have their permission.
+    </p>
+
+    <p>
+      You can use this service if you are (or the person you're requesting
+      information about is):
+    </p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>A former member of the armed forces</li>
+      <li>
+        Someone who is authorised to verify a former member of the armed forces
+        or has their permission to do so
+      </li>
+    </ul>
+
+    <p>
+      The online service is also available in <a href="#">Welsh (Cymraeg)</a>
+    </p>
+
+    <p>You cannot register for this service if you are in the UK illegally</p>
+
+    <a
+      href="/sp4v1_apply_veteran_what_need"
+      role="button"
+      draggable="false"
+      class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8"
+      data-module="govuk-button"
+    >
+      Start
+      <svg
+        class="govuk-button__start-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="17.5"
+        height="19"
+        viewBox="0 0 33 40"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
+      </svg>
+    </a>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <aside class="app-related-items" role="complementary">
+      <h2 class="govuk-heading-m" id="subsection-title">Related content</h2>
+      <nav role="navigation" aria-labelledby="subsection-title">
+        <ul class="govuk-list govuk-!-font-size-16">
+          <li>
+            <a href="https://www.gov.uk/government/organisations/veterans-uk">
+              Request records of deceased service personnel
+            </a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/government/organisations/veterans-uk">
+              Military service records
+            </a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/government/organisations/veterans-uk">
+              Military service request forms
+            </a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/government/organisations/veterans-uk">
+              Military service search forms
+            </a>
+          </li>
+          <li>
+            <a href="#">Ministry of Defence medal form</a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/government/organisations/veterans-uk">
+              Veterans UK
+            </a>
+          </li>
+          <li>
+            <a href="/sp4v1_verify_vet_start">
+              Veteran verify journey
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+</div>
+{% endblock %}

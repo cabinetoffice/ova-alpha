@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/sp4v1_behalfOf_apply_create_home_postcode">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    
+    <h1 class="govuk-heading-l">
+      What's your current home address?
+      </h1>
+  
+        
+      <div class="govuk-inset-text">
+       Postcode 
+        <h3 class="govuk-heading-m">{{ data['govuk-create-home-address-postcode'] }} &nbsp; &nbsp;<a href="/govuk_create_home_postcode">Change</a></h3>
+      </div>
+      
+      <form class="form" action="sp4v1_behalfOf_apply_create_check_details" method="post">
+      
+      
+
+      {% call govukFieldset({
+        legend: {
+          text: "",
+          classes: "govuk-fieldset__legend--l",
+          isPageHeading: false
+        }
+      }) %}
+
+        {{ govukInput({
+          label: {
+            text: 'Flat number'
+          },
+        classes: "govuk-input--width-5",
+          id: "govuk-create-home-address-flat-number",
+          name: "govuk-create-home-address-flat-number"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: 'House number'
+          },
+          classes: "govuk-input--width-5",
+          id: "govuk-create-home-address-house-number",
+          name: "govuk-create-home-address-house-number"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "House name"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "govuk-create-home-address-house-name",
+          name: "govuk-create-home-address-house-name"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Street name"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "govuk-create-home-address-street-name",
+          name: "govuk-create-home-address-street-name"
+        }) }}
+        
+        {{ govukInput({
+          label: {
+            text: "Town or city"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "govuk-create-home-address-town-city",
+          name: "govuk-create-home-address-town-city"
+        }) }}
+
+      {% endcall %}
+      
+       <h3 class="govuk-heading-s">When did you start living at this address?</h3>
+       
+       {{ govukInput({
+          label: {
+            text: "Year"
+          },
+          classes: "govuk-input--width-5",
+          id: "govuk-create-home-address-year-start",
+          name: "govuk-create-home-address-year-start"
+        }) }}
+       
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
