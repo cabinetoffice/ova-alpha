@@ -4,6 +4,7 @@ const router = express.Router()
 const passport = require('passport')
 const { Issuer, Strategy, generators, custom } = require('openid-client')
 const pem2jwk = require('rsa-pem-to-jwk')
+const e = require('express')
 
 // These keys are base64 encoded in .env
 const privatekey = Buffer.from(process.env.RSA_PRIVATE_KEY, 'base64').toString('utf8').replace(/\\n/gm, '\n')
@@ -83,6 +84,29 @@ Issuer.discover(process.env.ISSUER_BASE_URL).then(issuer => {
   passport.deserializeUser(function (obj, cb) {
     cb(null, obj)
   })
+})
+
+router.post('/eligibility-check', function (req, res) {
+
+  const formermember = req.session.data['former-member']
+  const ukresident = req.session.data['uk-resident']
+  const post2005 = req.session.data['post-2005']
+
+  if (formermember == "no" || ukresident == "no" || post2005 == "no") {
+    res.redirect("/ineligible")
+  }
+  if (formermember == "yes") {
+    delete req.session.data['former-member']// unset so we don't keep ending up here
+    res.redirect("/eligibility-two")
+  }
+  if (ukresident == "yes") {
+    delete req.session.data['uk-resident'] // ditto
+    res.redirect("/eligibility-three")
+  }
+  if(post2005 == "yes") {
+    delete req.session.data['post-2005']
+    res.redirect("/prove_id_start")
+  }
 })
 
 router.post('/ask-apply-veteran-card-answer', function (req, res) {
