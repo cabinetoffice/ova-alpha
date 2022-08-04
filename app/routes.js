@@ -100,16 +100,7 @@ router.post('/eligibility-two', function (req, res) {
   if (ukresident == "no") {
     res.redirect("/ineligible")
   } else {
-    res.redirect("/eligibility-three")
-  }
-})
-
-router.post('/eligibility-three', function (req, res) {
-  const post2005 = req.session.data['post-2005']
-  if(post2005 == "no") {
-    res.redirect("/ineligible")
-  } else {
-    res.redirect("/prove_id_start")
+    res.redirect("/gov_uk_create_or_sign_in")
   }
 })
 
