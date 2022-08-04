@@ -13,21 +13,31 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">Full name at time of your discharge from the armed services</h1>
 
-      <form class="form" action="question_DOB" method="post">
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-        {{ govukInput({
-          label: {
-            
-            isPageHeading: true
+      {{ govukRadios({
+        idPrefix: "what-was-your-name",
+        name: "what-was-your-name",
+        fieldset: {
+          legend: {
+            text: "What was your name when you were discharged from the Armed Forces?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
         },
-        classes: "govuk-input--width-20",
-        id: "question_name",
-        name: "question_name"
+        items: [
+          {
+            value: data["full_name"],
+            text: data["full_name"]
+          },
+          {
+            value: data["previous_name"],
+            text: data["previous_name"]
+          }
+        ]
         }) }}
 
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
 
       </form>
 
