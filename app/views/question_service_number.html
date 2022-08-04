@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+  Q{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,7 +13,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">Service number</h1>
+      <h1 class="govuk-heading-l">What was your Service Number?</h1>
 
       <form class="form" action="question_served_with" method="post">
 
@@ -23,8 +23,9 @@
             isPageHeading: true
         },
         classes: "govuk-input--width-20",
-        id: "question_name",
-        name: "question_name"
+        id: "question_service_number",
+        name: "question_service_number",
+        value: data["service_number"]
         }) }}
         
         <details class="govuk-details" data-module="govuk-details">

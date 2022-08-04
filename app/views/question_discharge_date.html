@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+  {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,16 +13,13 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {# <h1 class="govuk-heading-xl">Your enlistment date</h1> #}
-
-      {# <form class="form" action="/start_veteran_apply_id_card" method="post"> #}
-      <form class="form" action="mod_prove_id_start" method="post">
+      <form class="form" action="/question_id_form" method="post">
 
           <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" role="group"    aria-describedby="dob-hint">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
-                  The year you left
+                  The year you were discharged
                 </h1>
               </legend>
               <div id="dob-hint" class="govuk-hint">

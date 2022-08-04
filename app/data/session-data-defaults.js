@@ -26,5 +26,6 @@ module.exports = {
   "govuk_email_code" : ["123456"],
   "govuk_password" : ["q1w2e3r4t5y6"],
   "postal_address": ["14 Lime Court<br>Weston-super-mare<br>BS22 0AA"],
-  "phone_number": ["07700 900457"]
+  "phone_number": ["07700 900457"],
+  "service_number" : ["200210293847"]
 }
