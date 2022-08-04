@@ -86,25 +86,29 @@ Issuer.discover(process.env.ISSUER_BASE_URL).then(issuer => {
   })
 })
 
-router.post('/eligibility-check', function (req, res) {
-
+router.post('/eligibility-one', function (req, res) {
   const formermember = req.session.data['former-member']
-  const ukresident = req.session.data['uk-resident']
-  const post2005 = req.session.data['post-2005']
-
-  if (formermember == "no" || ukresident == "no" || post2005 == "no") {
+  if (formermember == "no") {
     res.redirect("/ineligible")
-  }
-  if (formermember == "yes") {
-    delete req.session.data['former-member']// unset so we don't keep ending up here
+  } else {
     res.redirect("/eligibility-two")
   }
-  if (ukresident == "yes") {
-    delete req.session.data['uk-resident'] // ditto
+})
+
+router.post('/eligibility-two', function (req, res) {
+  ukresident = req.session.data['uk-resident']
+  if (ukresident == "no") {
+    res.redirect("/ineligible")
+  } else {
     res.redirect("/eligibility-three")
   }
-  if(post2005 == "yes") {
-    delete req.session.data['post-2005']
+})
+
+router.post('/eligibility-three', function (req, res) {
+  const post2005 = req.session.data['post-2005']
+  if(post2005 == "no") {
+    res.redirect("/ineligible")
+  } else {
     res.redirect("/prove_id_start")
   }
 })
