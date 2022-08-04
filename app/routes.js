@@ -87,7 +87,13 @@ Issuer.discover(process.env.ISSUER_BASE_URL).then(issuer => {
 })
 
 router.post('/eligibility-one', function (req, res) {
-  const formermember = req.session.data['former-member']
+  const formermember = req.body['former-member']
+
+  if (!formermember) {
+    error = { text: "Select 'Yes' or 'No'" }
+    return res.render('eligibility-one', {error}) // relative URL, for reasons unknown
+  }
+
   if (formermember == "no") {
     res.redirect("/ineligible")
   } else {
@@ -96,11 +102,17 @@ router.post('/eligibility-one', function (req, res) {
 })
 
 router.post('/eligibility-two', function (req, res) {
-  ukresident = req.session.data['uk-resident']
+  ukresident = req.body['uk-resident']
+
+  if (!ukresident) {
+    error = { text: "Select 'Yes' or 'No'" }
+    return res.render('eligibility-two', {error}) 
+  }
+
   if (ukresident == "no") {
     res.redirect("/ineligible")
   } else {
-    res.redirect("/gov_uk_create_or_sign_in")
+    res.redirect("/govuk_create_or_sign_in")
   }
 })
 
