@@ -27,13 +27,13 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block header %}
     </ul>
 
     <p>You can use a veteran card to receive the recognition, support and benefits that only veterans are eligible for.</p>
-    <p>For more information visit <a href="https://www.gov.uk/government/organisations/veterans-uk">Veterans UK</a>.</p>
-
-    <h2 class="govuk-heading-m">Before you start</h2>
-
+    <p>For more information on the support and benefits available visit <a href="https://www.gov.uk/government/organisations/veterans-uk">Veterans Gateway</a></p>
+    
+    <h2 class="govuk-heading-m">What you need to apply</h2>
+    
     <p>To verify your identity you'll need:
       <ul class="govuk-list govuk-list--bullet">
-        <li>a GOV.UK account</li>
+        <li>a GOV.UK Sign In account</li>
       </ul>
     </p>
     
@@ -44,21 +44,22 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block header %}
         <li>the year you left service</li>
       </ul>
     </p>
-    <p>To receive your digital and/or physical card:
+    
+     <p>To receive your digital and/or physical card:
       <ul class="govuk-list govuk-list--bullet">
-        <li>a passport style photo that you can upload</li>
         <li>an email address</li>
         <li>a postal address to send the card to</li>
       </ul>
     </p>
+    
     <a
-      href="/eligibility-one"
+      href="/govuk_account_check"
       role="button"
       draggable="false"
       class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8"
       data-module="govuk-button"
     >
-      Start
+      Start now
       <svg
         class="govuk-button__start-icon"
         xmlns="http://www.w3.org/2000/svg"
@@ -72,8 +73,13 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block header %}
       </svg>
     </a>
 
-    <p>If you cannot use the online service you can apply for a veteran card by ...</p>
-    <p>Get help with this page</p>
+    <h2 class="govuk-heading-m">Before you start</h2>
+
+    <p>You can also <a href="https://www.postoffice.co.uk/identity" target="_new">register by post</a></p>
+    
+    <p>The online service is also avaibe in <a href="#">Welsh (Cymraeg)</a>.</p>
+    <p>You cannot register for this service if you're in the UK illegally.</p>
+    <p><a href="#">Get help with this page</a></p>
 
   </div>
 
@@ -108,11 +114,6 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block header %}
           <li>
             <a href="https://www.gov.uk/government/organisations/veterans-uk">
               Veterans UK
-            </a>
-          </li>
-          <li>
-            <a href="/sp4v1_verify_vet_start">
-              Veteran verify journey
             </a>
           </li>
         </ul>
