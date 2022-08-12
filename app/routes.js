@@ -122,4 +122,20 @@ router.post("/question_id_form", function (req, res){
   res.send("This is where the journey comes to a screeching halt. Sorry. Please see the <a href='https://drive.google.com/file/d/1DRK4h-TRTeDHjioJRtVo3V6MJVeZTwJ3/view'>TO BE flow, in particular, the 'Verification delivery' part.")
 })
 
+router.post("/govuk_account_check_answer", function (req, res) {
+  var answer = req.session.data["gov_uk_account_check"];
+
+  if (!answer) {
+    error = { text: "Select 'Yes' or 'No'" };
+    return res.render("govuk_account_check", { error });
+  }
+
+  if (answer == "yes") {
+    res.redirect("/govuk_account_sign_in");
+  }
+  else {
+    res.redirect("/govuk_account_sign_in");
+  }
+});
+
 module.exports = router
