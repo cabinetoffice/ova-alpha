@@ -23,19 +23,23 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
           items: [
             {
               value: "Email",
-              text: "Email"
+              text: "Email",
+              checked: checked("communications_choice", "Email")
             },
             {
               value: "Phone",
-              text: "Phone"
+              text: "Phone",
+              checked: checked("communications_choice", "Phone")
             },
             {
               value: "Post",
-              text: "Post"
+              text: "Post",
+              checked: checked("communications_choice", "Post")
             },
             {
               value: "none",
-              text: "I do not want to receive communications"
+              text: "I do not want to receive communications",
+              checked: checked("communications_choice", "none")
             }
           ],
           errorMessage: error
