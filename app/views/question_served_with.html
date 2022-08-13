@@ -13,7 +13,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="vetcard_communications_choice" method="post">
+      <form class="form" action="question_served_with" method="post">
 
        {{ govukRadios({
   idPrefix: "branch-served-with",
@@ -28,21 +28,26 @@
   items: [
     {
       value: "British Army",
-      text: "British Army"
+      text: "British Army",
+      checked: checked("branch-served-with", "British Army")     
     },
     {
       value: "Royal Navy",
-      text: "Royal Navy"
+      text: "Royal Navy",
+      checked: checked("branch-served-with", "Royal Navy")
     },
     {
       value: "Royal Air Force",
-      text: "Royal Air Force"
+      text: "Royal Air Force",
+      checked: checked("branch-served-with", "Royal Air Force")
     },
     {
       value: "Royal Marines",
-      text: "Royal Marines"
+      text: "Royal Marines",
+      checked: checked("branch-served-with", "Royal Marines")
     }
-  ]
+  ],
+  errorMessage: error
 }) }}
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>

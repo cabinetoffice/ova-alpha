@@ -13,7 +13,7 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
      
     <h1 class="govuk-heading-s">Do you want us to deliver your Veteran Card to this address?</h1>
     
-    <form class="form" action="govuk_use_email" method="post">
+    <form class="form" action="govuk_use_address" method="post">
         {{ govukRadios({
           idPrefix: "govuk_user_address",
           name: "govuk_user_address",
@@ -34,7 +34,8 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
               text: "No",
               checked: checked("govuk_user_address", "no")
             }
-          ]
+          ],
+        errorMessage: error
         }) }}
       
 

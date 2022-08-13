@@ -7,7 +7,7 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
   <div class="govuk-grid-column-two-thirds">
     {# <h1 class="govuk-heading-l">How would you like to receive communications about support for veterans?</h1> #}
     
-    <form class="form" action="/vetcard_account_summary_extra" method="post">
+    <form class="form" action="/vetcard_communications_choice" method="post">
         {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
         
          {{ govukRadios({
@@ -23,15 +23,18 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
         items: [
             {
               value: "Email",
-              text: "Email"
+              text: "Email",
+              checked: checked("vetcard_comms_choice", "Email")
             },
             {
               value: "Phone",
-              text: "Phone"
+              text: "Phone",
+              checked: checked("vetcard_comms_choice", "Phone")
             },
             {
               value: "Post",
-              text: "Post"
+              text: "Post",
+              checked: checked("vetcard_comms_choice", "Post")
             }
           ],
           errorMessage: error

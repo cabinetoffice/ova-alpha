@@ -13,11 +13,13 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="govuk_use_photo" method="post">
+      <form class="form" action="question_id_choice_route" method="post">
 
+       {% from "govuk/components/radios/macro.njk" import govukRadios %} 
+       
        {{ govukRadios({
-        idPrefix: "question_id_choice",
-        name: "question_id_choice",
+        idPrefix: "id_choice",
+        name: "id_choice",
         fieldset: {
           legend: {
             text: "How do you want your veteran card?",
@@ -27,21 +29,22 @@
         },
         items: [
           {
-            value: "physical_card",
+            value: "Physical card",
             text: "Physical card",
-            checked: checked("question_id_choice", "physical_card")
+            checked: checked("id_choice", "Physical card")
           },
           {
-            value: "digital_card",
+            value: "Digital card",
             text: "Digital card",
-            checked: checked("question_id_choice", "digital_card")
+            checked: checked("id_choice", "Digital card")
           },
           {
             value: "Physical and Digital",
             text: "Both",
-            checked: checked("question_id_choice", "both")
+            checked: checked("id_choice", "Physical and Digital")
           }
-        ]
+        ],
+        errorMessage: error
       }) }}
        
        {{ govukDetails({

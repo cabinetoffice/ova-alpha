@@ -13,7 +13,7 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
      
     <h1 class="govuk-heading-s">Do you want us to use this image for your card?</h1>
     
-    <form class="form" action="govuk_use_address" method="post">
+    <form class="form" action="govuk_use_photo" method="post">
         {{ govukRadios({
           idPrefix: "govuk_user_photo",
           name: "govuk_user_photo",
@@ -34,7 +34,8 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
               text: "No",
               checked: checked("govuk_user_photo", "no")
             }
-          ]
+          ],
+        errorMessage: error
         }) }}
       
 
