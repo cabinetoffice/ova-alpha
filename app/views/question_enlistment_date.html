@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/question_served_with">Back</a>
+  <a class="govuk-back-link" href="/question_service_number">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -13,44 +13,50 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {# <h1 class="govuk-heading-xl">Your enlistment date</h1> #}
+  <form class="form" action="/question_discharge_date" method="post">
 
-      <form class="form" action="/question_discharge_date" method="post">
-
-       <div class="govuk-form-group">
-  <fieldset class="govuk-fieldset" role="group"    aria-describedby="dob-hint">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset" role="group"         aria-describedby="dob-hint">
+  
+    <legend class="govuk-fieldset__legend   govuk-fieldset__legend--l">
       <h1 class="govuk-fieldset__heading">
-        The year you enlisted
+        What year did you start your service?
       </h1>
     </legend>
-    <div id="dob-hint" class="govuk-hint">
-      For example, 1970
-    </div>
-    <div class="govuk-date-input" id="dob">
+  
      
-      <div class="govuk-date-input__item">
-        <div class="govuk-form-group">
-          <label class="govuk-label govuk-date-input__label" for="dob-year">
-            Year
-          </label>
-          <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="dob-year" name="dob-year" type="text" autocomplete="bday-year" inputmode="numeric">
-        </div>
-      </div>
-    </div>
+    {{ govukDateInput({
+      id: "enlistment-year",
+      namePrefix: "enlistment-year",
+      fieldset: {
+        legend: {
+          text: "",
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      hint: {
+        text: "For example, 1970"
+      },
+      items: [
+        {
+          classes: "govuk-input--width-4",
+          name: "year",
+          value: data['enlistment-year-year']
+        }
+      ]
+    }) }}
+    </fieldset>
+  </div>
+  
+      {{ govukDetails({
+          summaryText: "How to find this",
+          text: "You can find this on your discharge letter or other forms of documentation. If you can't remember the exact year then put an estimate."
+      }) }}
 
-  </fieldset>
-</div>
-
-{{ govukDetails({
-  summaryText: "How to find this",
-  text: "You can find this on your discharge letter or other forms of documentation. If you can't remember the exact date then input the year."
-}) }}
-
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
-
-      </form>
-
+     <button class="govuk-button" data-module="govuk-button">Continue
+     </button>
+  </form>
+  
     </div>
   </div>
 
