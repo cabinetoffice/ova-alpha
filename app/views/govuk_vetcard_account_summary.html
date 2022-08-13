@@ -1,0 +1,204 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+    {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/govuk_vetcard_communications_check">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">Check your answers before sending your application</h1>
+      
+      <h2 class="govuk-heading-m">Card and delivery details</h2>
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Photo"
+            },
+            value: {
+              text: data['full_name']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "photo"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: data['full_name']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Postal address"
+            },
+            value: {
+              text: data["postal_address"] | safe
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Email"
+            },
+            value: {
+              text: data["govuk_question_email"]
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "email"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "ID format"
+            },
+            value: {
+              text: data["question_id_choice"]
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      
+      <h2 class="govuk-heading-m">Service details</h2>
+      
+       {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Service number"
+            },
+            value: {
+              text: data['service_number']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "service number"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Start of service"
+            },
+            value: {
+              text: data['enlistment-year-year']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "start of service"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "End of service"
+            },
+            value: {
+              text: data['discharge-year-year']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "end of service"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+       
+      <h2 class="govuk-heading-m">Communication details</h2>
+      
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Format of communications"
+            },
+            value: {
+              text: data['communications_choice']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "format of communications"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      
+      <h2 class="govuk-heading-m">Now send your application</h2>
+      
+      <p>By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+
+      {{ govukButton({
+        text: "Accept and send",
+        href: "/question_name"
+      }) }}
+
+{% endblock %}
