@@ -1,0 +1,34 @@
+{% extends "layout.html" %} {% block pageTitle %} {{ serviceName }} – GOV.UK
+Prototype Kit {% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukPanel({ titleText: "Application complete", html: "Your reference
+    number<br /><strong>BORO2463</strong>" }) }}
+
+    <h3 class="govuk-heading-m">What happens next</h3>
+
+    <p>You will receive an email within 2 hours confirming your application</p>
+
+    <p>
+      We need to look into your application in a bit more detail to verify you
+      as a veteran and we will keep you updated on how this progresses.
+    </p>
+
+    <p>
+      Our next contact to you will be to confirm whether we have found your
+      service records. Hopefully we will be able to issue you with your veterans
+      card soon.
+    </p>
+
+    <p>Thank you for your service.</p>
+
+    <h3 class="govuk-heading-m">Before you go</h3>
+
+    <p>We use feedback to make our services better.
+      <a href="#">Please take the feedback survey</a> (takes 30 seconds)
+    </p>
+  </div>
+</div>
+
+{% endblock %}
