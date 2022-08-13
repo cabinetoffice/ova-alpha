@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+    {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/govuk_vetcard_communications_check">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">We cannot instantly match your details</h1>
+      
+      <p>We will look into you r application in more detail to find your veteran record and hopefully we will still be able to issue you with a Veteran Card</p>
+      
+      <h2 class="govuk-heading-m">What happens next</h2>
+      
+      <p>We will ask you two more questions to help us to locate your service record. we will then keep you updated to let you know if your applcation has been successful or not.</p>
+
+      
+
+      {{ govukButton({
+        text: "Continue",
+        href: "/question_NIN"
+      }) }}
+
+{% endblock %}
