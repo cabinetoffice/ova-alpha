@@ -1,0 +1,46 @@
+{% extends "layout.html" %} {% block pageTitle %} Question page template – {{
+serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+<a class="govuk-back-link" href="/question_ID_choice">Back</a>
+{% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Use the photo from your GOV.UK account for your Veteran Card</h1>
+    
+     <p>If you want to change this image then you will need to update your GOV.UK account</p>
+     
+    <img src="/public/images/govuk_head_photo.png" alt="User photo">
+     
+    <h1 class="govuk-heading-s">Do you want us to use this image for your card?</h1>
+    
+    <form class="form" action="govuk_use_address" method="post">
+        {{ govukRadios({
+          idPrefix: "govuk_user_photo",
+          name: "govuk_user_photo",
+          fieldset: {
+            legend: {
+              text: "",
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: checked("govuk_user_photo", "yes")
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: checked("govuk_user_photo", "no")
+            }
+          ]
+        }) }}
+      
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

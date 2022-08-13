@@ -1,0 +1,47 @@
+{% extends "layout.html" %} {% block pageTitle %} {{
+serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+<a class="govuk-back-link" href="/govuk_use_address">Back</a>
+{% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Use the email address from your GOV.UK account to send your digital version</h1>
+    
+     <p>We found the following email address from your GOV.UK account:</p>
+     
+     <p>{{data['govuk_question_email']}}</p>
+    
+    <form class="form" action="/govuk_use_email" method="post">
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        
+        {{ govukRadios({
+          idPrefix: "govuk_user_email",
+          name: "govuk_user_email",
+          fieldset: {
+            legend: {
+              text: "Is this the email address we should use to send your digital Veteran Card?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+             
+            },
+            {
+              value: "no",
+              text: "No"
+             
+            }
+          ],
+          errorMessage: error
+        }) }}
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
