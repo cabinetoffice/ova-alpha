@@ -16,8 +16,62 @@
       <h1 class="govuk-heading-l">Check your answers before sending your application</h1>
       
       <h2 class="govuk-heading-m">Card and delivery details</h2>
+      
+      <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Photo</dt>
+        <dd class="govuk-summary-list__value">
+          <img src="/public/images/govuk_head_photo.png" />
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden">photo</span>
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Name</dt>
+        <dd class="govuk-summary-list__value">{{data['full_name']}}</dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> name</span>
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Postal address</dt>
+        <dd class="govuk-summary-list__value">{{data["postal_address"]}}</dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> postal address</span>
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Email</dt>
+        <dd class="govuk-summary-list__value">
+          <p class="govuk-body">{{data["govuk_question_email"]}}</p>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> email</span>
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">ID format</dt>
+        <dd class="govuk-summary-list__value">
+          <p class="govuk-body">{{data["id_choice"]}}</p>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> ID format</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
 
-      {{ govukSummaryList({
+      {# {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
           {
@@ -106,7 +160,7 @@
             }
           }
         ]
-      }) }}
+      }) }} #}
       
       <h2 class="govuk-heading-m">Service details</h2>
       
