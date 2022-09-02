@@ -28,7 +28,7 @@
       
       <p>Your code will expire after 15 minutes.</p>
       
-      <form class="form" action="govuk_account_summary" method="post">
+      <form class="form" action="govuk_create_check_email_code" method="post">
 
         {{ govukInput({
           label: {
@@ -38,7 +38,7 @@
         classes: "govuk-input--width-5",
         id: "govuk_email_code",
         name: "govuk_email_code",
-        value: data['govuk_email_code']
+        errorMessage: error
         }) }}
         
         <p><a href="#">Request a new code</a> if:</p>

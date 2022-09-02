@@ -20,7 +20,7 @@
   name: "branch-served-with",
   fieldset: {
     legend: {
-      text: "Which branch did you serve with? (optional)",
+      text: "Which branch did you last serve with?",
       isPageHeading: true,
       classes: "govuk-fieldset__legend--l"
     }
@@ -32,19 +32,14 @@
       checked: checked("branch-served-with", "British Army")     
     },
     {
-      value: "Royal Navy",
-      text: "Royal Navy",
-      checked: checked("branch-served-with", "Royal Navy")
-    },
-    {
       value: "Royal Air Force",
       text: "Royal Air Force",
       checked: checked("branch-served-with", "Royal Air Force")
     },
     {
-      value: "Royal Marines",
-      text: "Royal Marines",
-      checked: checked("branch-served-with", "Royal Marines")
+      value: "Royal Navy",
+      text: "Royal Navy",
+      checked: checked("branch-served-with", "Royal Navy")
     }
   ],
   errorMessage: error

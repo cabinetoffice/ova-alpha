@@ -1,0 +1,35 @@
+{% extends "layout.html" %} {% block pageTitle %} {{ serviceName }} – GOV.UK
+Prototype Kit {% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukPanel({ titleText: "Application complete", html: "Your reference
+    number<br /><strong>HDJ2123F</strong>" }) }}
+
+    <p>We have matched your record</p>
+
+    <h3 class="govuk-heading-m">What happens next</h3>
+
+    <p>
+      You will shortly receive an email which will contain a link for you to download a digital version of your
+      Veteran ID card.
+    </p>
+
+    <p>
+      For more information on the services and benefits you can access with your
+      card visit the
+      <a
+        href="https://www.gov.uk/guidance/veterans-uk-contact-us"
+        target="_new"
+        >Veterans UK</a
+      >
+    </p>
+
+    <h3 class="govuk-heading-m">Before you go</h3>
+
+    <p>We use feedback to make our services better.</p>
+    <p><a href="#">Please take the feedback survey</a> (takes 30 seconds)</p>
+  </div>
+</div>
+
+{% endblock %}

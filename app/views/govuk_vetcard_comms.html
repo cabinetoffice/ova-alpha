@@ -1,0 +1,59 @@
+{% extends "layout.html" %} {% block pageTitle %} {{
+serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+<a class="govuk-back-link" href="/govuk_use_email">Back</a>
+{% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Do you want to receive communications about veteran affairs?</h1>
+    
+    <form class="form" action="/govuk_vetcard_comms" method="post">
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "govuk_comms_choice",
+          name: "govuk_comms_choice",
+          fieldset: {
+            legend: {
+              text: "",
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              checked: checked("govuk_comms_choice", "Yes")
+             
+            },
+            {
+              value: "No",
+              text: "No",
+              checked: checked("govuk_comms_choice", "No")
+             
+            }
+          ],
+          errorMessage: error
+        }) }}
+        
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              What sort of communications will I be sent
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+          <div>
+            <p>We send email and SMS (short message service) text messages to veterans using GOV.UK Notify. </p>
+            <p>These could include updates about the support that veterans are eligible for, information about the wider veteran community and other relevant information for UK ex-service personnel.</p>
+            <p>You can opt out of receiving communications at any time.</p>
+          </div>
+        </details>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

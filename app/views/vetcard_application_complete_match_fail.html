@@ -1,0 +1,24 @@
+{% extends "layout.html" %} {% block pageTitle %} {{ serviceName }} – GOV.UK
+Prototype Kit {% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukPanel({ titleText: "Application complete", html: "Your reference
+    number<br /><strong>HDJ2123F</strong>" }) }}
+    
+    <p>We need to do further checks to match your record.</p>
+
+    <h3 class="govuk-heading-m">What happens next</h3>
+
+    <p>We will send your application to Veterans UK for further processing. This may take up to 2 weeks.</p>
+
+    <p>You do not need to do anything in the meantime, but contact <a href="https://www.gov.uk/guidance/veterans-uk-contact-us" target="_new">Veterans UK</a> if you’d like to find out more about the support available for veterans.</p>
+
+    <h3 class="govuk-heading-m">Before you go</h3>
+
+    <p>We use feedback to make our services better.</p>
+    <p><a href="#">Please take the feedback survey</a> (takes 30 seconds)</p>
+  </div>
+</div>
+
+{% endblock %}

@@ -6,15 +6,52 @@ endblock %} {% block content %}
     <h1 class="govuk-heading-xl">
       Prototype your service using GOV.UK Prototype Kit
       <span class="govuk-caption-xl">{{releaseVersion}}</span>
-      <span class="govuk-caption-l">Digital prototype  sprint 5 v0.3</span>
+      <span class="govuk-caption-l">Digital prototype sprint 6 v0.1</span>
     </h1>
     {{releaseVersion | log }}
 
-    <h2 class="govuk-heading-m">
-      <a href="/sp4v1_start_veteran_verify">Apply for a veteran card</a>
-    </h2>
+    <form class="form" action="/sp4v1_start_veteran_verify_choice" method="post">
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        
+        {{ govukRadios({
+          idPrefix: "start_veteran_match_status",
+          name: "start_veteran_match_status",
+          fieldset: {
+            legend: {
+              text: "Please select record match success or fail journey",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Success",
+              text: "happy path - user automatically matched",
+              checked: checked("start_veteran_match_status", "Success")
+             
+            },
+            {
+              value: "Fail",
+              text: "unhappy path - needs manual verification after",
+              checked: checked("start_veteran_match_status", "Fail")
+             
+            }
+          ],
+          errorMessage: error
+        }) }}
+        
+         <h2 class="govuk-heading-s">Please note - when asked for your GOV.UK account</h2>
+         <ul class="govuk-list govuk-list--bullet">
+          <li>enter an email which you have access to in order to receive the summary email on completion of the user journey</li>
+          <li>you can enter any password</li>
+         </ul>
+         
+        
+       {{ govukButton({
+          text: "Apply for a Veteran ID card"
+        }) }}
+    </form>
 
-    <h3 class="govuk-heading-s">Examples and documentation</h3>
+    <h2 class="govuk-heading-s">Examples and documentation</h2>
 
     <ul class="govuk-list govuk-list--bullet">
       <li>
@@ -26,5 +63,7 @@ endblock %} {% block content %}
     </ul>
   </div>
 </div>
+
+
 
 {% endblock %}

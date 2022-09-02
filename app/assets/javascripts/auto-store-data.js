@@ -5,17 +5,17 @@ $('body').on('submit', 'form', function (e) {
   // all form data on the server, including checkboxes that are checked, then
   // later unchecked
 
-  const $checkboxes = $(this).find('input:checkbox')
+  var $checkboxes = $(this).find('input:checkbox')
 
-  const $inputs = []
-  const names = {}
+  var $inputs = []
+  var names = {}
 
   $checkboxes.each(function () {
-    const $this = $(this)
+    var $this = $(this)
 
     if (!names[$this.attr('name')]) {
       names[$this.attr('name')] = true
-      const $input = $('<input type="hidden">')
+      var $input = $('<input type="hidden">')
       $input.attr('name', $this.attr('name'))
       $input.attr('value', '_unchecked')
       $inputs.push($input)

@@ -20,11 +20,13 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
           items: [
             {
               value: "yes",
-              text: "Yes"
+              text: "Yes",
+              checked: checked("uk-resident", "yes")
             },
             {
               value: "no",
-              text: "No"
+              text: "No",
+              checked: checked("uk-resident", "no")
             }
           ],
           errorMessage: error

@@ -5,25 +5,23 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/govuk_vetcard_communications_check">Back</a>
+  <a class="govuk-back-link" href="/govuk_vetcard_communications_preference">Back</a>
 {% endblock %}
 
 {% block content %}
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-
+    <form class="form" action="govuk_vetcard_acc_summary_choice" method="post">
       <h1 class="govuk-heading-l">Check your answers before sending your application</h1>
       
       <h2 class="govuk-heading-m">Card and delivery details</h2>
       
-          <dl class="govuk-summary-list">
+      <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Photo
-        </dt>
+        <dt class="govuk-summary-list__key">Photo</dt>
         <dd class="govuk-summary-list__value">
-          <img src='/public/images/govuk_head_photo.png'>
+          <img src="/public/images/govuk_head_photo.png" />
         </dd>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="#">
@@ -32,12 +30,8 @@
         </dd>
       </div>
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Name
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{data['full_name']}}
-        </dd>
+        <dt class="govuk-summary-list__key">Name</dt>
+        <dd class="govuk-summary-list__value">{{data['full_name']}}</dd>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="#">
             Change<span class="govuk-visually-hidden"> name</span>
@@ -45,12 +39,8 @@
         </dd>
       </div>
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Postal address
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{data["postal_address"]}}
-        </dd>
+        <dt class="govuk-summary-list__key">Postal address</dt>
+        <dd class="govuk-summary-list__value">{{data["postal_address"]}}</dd>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="#">
             Change<span class="govuk-visually-hidden"> postal address</span>
@@ -58,9 +48,7 @@
         </dd>
       </div>
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Email
-        </dt>
+        <dt class="govuk-summary-list__key">Email</dt>
         <dd class="govuk-summary-list__value">
           <p class="govuk-body">{{data["govuk_question_email"]}}</p>
         </dd>
@@ -71,9 +59,7 @@
         </dd>
       </div>
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          ID format
-        </dt>
+        <dt class="govuk-summary-list__key">ID format</dt>
         <dd class="govuk-summary-list__value">
           <p class="govuk-body">{{data["id_choice"]}}</p>
         </dd>
@@ -84,7 +70,6 @@
         </dd>
       </div>
     </dl>
-      
 
       {# {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
@@ -232,6 +217,40 @@
                 }
               ]
             }
+          },
+          {
+            key: {
+              text: "National insurance number"
+            },
+            value: {
+              text: data['national_insurance_number']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "national insurance number"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Served with"
+            },
+            value: {
+              text: data['branch-served-with']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "served with"
+                }
+              ]
+            }
           }
         ]
       }) }}
@@ -257,6 +276,23 @@
                 }
               ]
             }
+          },
+          {
+            key: {
+              text: "Application progress updates"
+            },
+            value: {
+              text: data['vetcard_comms_choice']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "application progress updates"
+                }
+              ]
+            }
           }
         ]
       }) }}
@@ -264,10 +300,8 @@
       <h2 class="govuk-heading-m">Now send your application</h2>
       
       <p>By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
-
-      {{ govukButton({
-        text: "Accept and send",
-        href: "/vetcard_match_fail"
-      }) }}
+      
+      <button class="govuk-button" data-module="govuk-button">Accept and send</button>
+      </form>
 
 {% endblock %}

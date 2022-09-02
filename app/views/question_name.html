@@ -22,22 +22,36 @@
         name: "what-was-your-name",
         fieldset: {
           legend: {
-            text: "What was your name when you were discharged from the Armed Forces?",
+            text: "What was the name you were using when you left the armed forces?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
         },
         items: [
           {
-            value: data["full_name"],
-            text: data["full_name"]
+            value: data["current_DI_name"],
+            text: data["current_DI_name"]
           },
           {
-            value: data["previous_name"],
-            text: data["previous_name"]
+            value: data["previous_DI_name_1"],
+            text: data["previous_DI_name_1"]
           }
-        ]
+          ]
         }) }}
+      
+         <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text"> Why are we asking this? </span>
+            </summary>
+            <div class="govuk-details__text">
+              <p>We found these names for you in your GOV.UK account:</p>
+              <ul class="govuk-list govuk-list--bullet">
+                <li>We will use the name you used while serving to find your military records</li>
+                <li>The veteran's ID card will have the name you currently use on it</li>
+              </ul>
+            </div>
+         </details>
+        
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 
 
