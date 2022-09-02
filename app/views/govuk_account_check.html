@@ -1,0 +1,59 @@
+{% extends "layout.html" %} {% block pageTitle %} {{
+serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+<a class="govuk-back-link" href="/sp4v1_start_veteran_verify">Back</a>
+{% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Do you have a GOV.UK account?</h1>
+    
+    <form class="form" action="govuk_account_check" method="post">
+    
+    {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+    {{ govukRadios({
+      idPrefix: "gov_uk_account_check",
+      name: "gov_uk_account_check",
+      fieldset: {
+        legend: {
+          text: "",
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes",
+          checked: checked("gov_uk_account_check", "yes")
+        },
+        {
+          value: "no",
+          text: "No",
+          checked: checked("gov_uk_account_check", "no")
+        }
+      ],
+        errorMessage: error
+    }) }}
+    
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+         About GOV.UK accounts
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+      <p>GOV.UK accounts are new. They are the first step towards creating a single account that you can use to sign in to all government services. <p>GOV.UK accounts will eventually replace all other government accounts. We're working on adding more features and services.</p>
+      <p>For now, you need to use differnt accounts to access different government services</p>
+      </div>
+    </details>
+    
+    
+      <button class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

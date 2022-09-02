@@ -1,0 +1,54 @@
+{% extends "layout.html" %} {% block pageTitle %}  {{
+serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+<a class="govuk-back-link" href="/govuk_use_email">Back</a>
+{% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">How would you like to receive communications about support for veterans?</h1>
+    
+    <form class="form" action="/govuk_vetcard_communications_check" method="post">
+        {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+        {{ govukCheckboxes({
+          idPrefix: "communications_choice",
+          name: "communications_choice",
+          fieldset: {
+            legend: {
+              text: "",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Email",
+              text: "Email",
+              checked: checked("communications_choice", "Email")
+            },
+            {
+              value: "Phone",
+              text: "Phone",
+              checked: checked("communications_choice", "Phone")
+            },
+            {
+              value: "Post",
+              text: "Post",
+              checked: checked("communications_choice", "Post")
+            },
+            {
+              value: "none",
+              text: "I do not want to receive communications",
+              checked: checked("communications_choice", "none")
+            }
+          ],
+          errorMessage: error
+        }) }}
+      
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

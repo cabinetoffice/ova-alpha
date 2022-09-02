@@ -1,4 +1,4 @@
-{% extends "layout.html" %} {% block pageTitle %} Start page template – {{
+{% extends "layout.html" %} {% block pageTitle %} {{
 serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block header %}
 <!-- Blank header with no service name for the start page -->
 {{ govukHeader() }} {% endblock %} {% block beforeContent %}
@@ -22,40 +22,44 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block header %}
 
     <p>Use this service to:</p>
     <ul class="govuk-list govuk-list--bullet">
+      <li>Verify that you have served in HM Armed Forces</li>
       <li>Apply for a veteran card</li>
     </ul>
 
-    <p>
-      You can do this for yourself, or on behalf of another living person if you
-      have their permission.
+    <p>You can use a veteran card to receive the recognition, support and benefits that only veterans are eligible for.</p>
+    <p>For more information on the support and benefits available visit <a href="https://www.gov.uk/government/organisations/veterans-uk">Veterans Gateway</a></p>
+    
+    <h2 class="govuk-heading-m">What you need to apply</h2>
+    
+    <p>To verify your identity you'll need:
+      <ul class="govuk-list govuk-list--bullet">
+        <li>a GOV.UK Sign In account</li>
+      </ul>
     </p>
-
-    <p>
-      You can use this service if you are (or the person you're requesting
-      information about is):
+    
+    <p>To verify your service:
+      <ul class="govuk-list govuk-list--bullet">
+        <li>your service number</li>
+        <li>the year you enlisted</li>
+        <li>the year you left service</li>
+      </ul>
     </p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li>A former member of the armed forces</li>
-      <li>
-        Someone who is authorised to verify a former member of the armed forces
-        or has their permission to do so
-      </li>
-    </ul>
-
-    <p>
-      The online service is also available in <a href="#">Welsh (Cymraeg)</a>
+    
+     <p>To receive your digital and/or physical card:
+      <ul class="govuk-list govuk-list--bullet">
+        <li>an email address</li>
+        <li>a postal address to send the card to</li>
+      </ul>
     </p>
-
-    <p>You cannot register for this service if you are in the UK illegally</p>
-
+    
     <a
-      href="/sp4v1_apply_veteran_what_need"
+      href="/govuk_account_check"
       role="button"
       draggable="false"
       class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8"
       data-module="govuk-button"
     >
-      Start
+      Start now
       <svg
         class="govuk-button__start-icon"
         xmlns="http://www.w3.org/2000/svg"
@@ -68,6 +72,15 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block header %}
         <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
       </svg>
     </a>
+
+    <h2 class="govuk-heading-m">Before you start</h2>
+
+    <p>You can also <a href="https://www.postoffice.co.uk/identity" target="_new">register by post</a></p>
+    
+    <p>The online service is also avaibe in <a href="#">Welsh (Cymraeg)</a>.</p>
+    <p>You cannot register for this service if you're in the UK illegally.</p>
+    <p><a href="#">Get help with this page</a></p>
+
   </div>
 
   <div class="govuk-grid-column-one-third">
@@ -101,11 +114,6 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block header %}
           <li>
             <a href="https://www.gov.uk/government/organisations/veterans-uk">
               Veterans UK
-            </a>
-          </li>
-          <li>
-            <a href="/sp4v1_verify_vet_start">
-              Veteran verify journey
             </a>
           </li>
         </ul>

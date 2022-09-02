@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+  {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/upload_photo">Back</a>
+  <a class="govuk-back-link" href="/question_discharge_date">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -13,11 +13,13 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="question_id_choice_answer" method="post">
+      <form class="form" action="question_id_choice_route" method="post">
 
+       {% from "govuk/components/radios/macro.njk" import govukRadios %} 
+       
        {{ govukRadios({
-        idPrefix: "question_id_choice",
-        name: "question_id_choice",
+        idPrefix: "id_choice",
+        name: "id_choice",
         fieldset: {
           legend: {
             text: "How do you want your veteran card?",
@@ -27,19 +29,22 @@
         },
         items: [
           {
-            value: "question_id_choice_physical_card",
+            value: "Physical card",
             text: "Physical card",
-            checked: checked("how-many-balls", "3 or more")
+            checked: checked("id_choice", "Physical card")
           },
           {
-            value: "question_id_choice_digital_card",
-            text: "Digital card"
+            value: "Digital card",
+            text: "Digital card",
+            checked: checked("id_choice", "Digital card")
           },
           {
-            value: "question_id_choice_both",
-            text: "Both"
+            value: "Physical and Digital",
+            text: "Both",
+            checked: checked("id_choice", "Physical and Digital")
           }
-        ]
+        ],
+        errorMessage: error
       }) }}
        
        {{ govukDetails({
