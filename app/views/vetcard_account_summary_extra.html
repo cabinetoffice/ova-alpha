@@ -5,14 +5,18 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/vetcard_communications_choice">Back</a>
+{{ govukPhaseBanner({ tag: {
+    text: "alpha"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'}) }}
+  <a class="govuk-back-link" href="/govuk_vetcard_communications_preference">Back</a>
 {% endblock %}
 
 {% block content %}
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-
+     <form class="form" action="/vetcard_account_summary_choice" method="post">
       <h1 class="govuk-heading-l">Check your answers before sending your application</h1>
       
       <h2 class="govuk-heading-m">Card and delivery details</h2>
@@ -70,97 +74,6 @@
         </dd>
       </div>
     </dl>
-
-      {# {{ govukSummaryList({
-        classes: 'govuk-!-margin-bottom-9',
-        rows: [
-          {
-            key: {
-              text: "Photo"
-            },
-            value: {
-              text: ""
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "photo"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Name"
-            },
-            value: {
-              text: data['full_name']
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "name"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Postal address"
-            },
-            value: {
-              text: data["postal_address"] | safe
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "address"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Email"
-            },
-            value: {
-              text: data["govuk_question_email"]
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "email"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "ID format"
-            },
-            value: {
-              text: data["question_id_choice"]
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "contact details"
-                }
-              ]
-            }
-          }
-        ]
-      }) }} #}
       
       <h2 class="govuk-heading-m">Service details</h2>
       
@@ -172,7 +85,7 @@
               text: "Service number"
             },
             value: {
-              text: data['service_number']
+              text: data['question_service_number']
             },
             actions: {
               items: [
@@ -214,6 +127,23 @@
                   href: "#",
                   text: "Change",
                   visuallyHiddenText: "end of service"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Name at discharge"
+            },
+            value: {
+              text: data['name_at_discharge']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name at discharge"
                 }
               ]
             }
@@ -262,6 +192,23 @@
         rows: [
           {
             key: {
+              text: "Receive future communications"
+            },
+            value: {
+              text: data['govuk_comms_choice']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "receive future communications"
+                }
+              ]
+            }
+          },
+          {
+            key: {
               text: "Format of communications"
             },
             value: {
@@ -276,34 +223,17 @@
                 }
               ]
             }
-          },
-          {
-            key: {
-              text: "Application progress updates"
-            },
-            value: {
-              text: data['vetcard_comms_choice']
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "application progress updates"
-                }
-              ]
-            }
           }
+          
         ]
       }) }}
       
       <h2 class="govuk-heading-m">Now send your application</h2>
       
       <p>By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
-
-      {{ govukButton({
-        text: "Accept and send",
-        href: "/vetcard_application_complete"
-      }) }}
+      
+      <button class="govuk-button" data-module="govuk-button">Accept and send</button>
+      
+      </form>
 
 {% endblock %}

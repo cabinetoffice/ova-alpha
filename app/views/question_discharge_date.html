@@ -5,6 +5,10 @@
 {% endblock %}
 
 {% block beforeContent %}
+{{ govukPhaseBanner({ tag: {
+    text: "alpha"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'}) }}
   <a class="govuk-back-link" href="/question_enlistment_date">Back</a>
 {% endblock %}
 
@@ -13,14 +17,14 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="question_id_choice" method="post">
+      <form class="form" action="/question_choice_discharge_date" method="post">
 
           <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" role="group"    aria-describedby="dob-hint">
             
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
-                  What year did you leave the service
+                  What year did you leave the service?
                 </h1>
               </legend>
               
@@ -42,19 +46,23 @@
                     name: "year",
                     value: data['discharge-year-year']
                   }
-                ]
+                ],
+                errorMessage: error
               }) }}
-
             </fieldset>
-          </div>
-          
-           <p>If you do not know the exact dates of your service this may cause a delay in the time it takes for us to process your application.
-</p>
+          </div>  
 
-        {{ govukDetails({
-          summaryText: "How to find this",
-          text: "You can find this on your discharge letter or other forms of documentation. If you can't remember the exact date then input the year."
-        }) }}
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              How to find this
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+          <div>
+            <p>You can find this on your discharge letter or documentation about your pension. If you don't have these, contact <a href="https://www.gov.uk/guidance/veterans-uk-contact-us" target="_new">Veterans UK</a></p>
+          </div>
+        </details>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 

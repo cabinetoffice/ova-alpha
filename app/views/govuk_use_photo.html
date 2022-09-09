@@ -1,13 +1,23 @@
-{% extends "layout.html" %} {% block pageTitle %} {{
-serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
-<a class="govuk-back-link" href="/question_id_choice">Back</a>
-{% endblock %} {% block content %}
+{% extends "layout.html" %} 
+
+{% block pageTitle %} {{
+serviceName }} – GOV.UK Prototype Kit 
+{% endblock %} 
+
+{% block beforeContent %}
+{{ govukPhaseBanner({ tag: {
+    text: "alpha"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'}) }}
+<a class="govuk-back-link" href="/question_id_type">Back</a>
+{% endblock %} 
+{% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-l">Use the photo from your GOV.UK account for your Veteran Card</h1>
+    <h1 class="govuk-heading-l">Use the photo from your GOV.UK account for your veteran ID card</h1>
     
-     <p>If you want to change this image then you will need to update your GOV.UK account</p>
+     <p>If you want to change this image, you will need to update your GOV.UK account</p>
      
     <img src="/public/images/govuk_head_photo.png" alt="User photo">
      
@@ -37,6 +47,27 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
           ],
         errorMessage: error
         }) }}
+        
+        <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text"> What type of photo can I use</span>
+        </summary>
+        <div class="govuk-details__text">
+          <p>Use a passport style photo. In your photo, you must:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>be facing forwards and looking straight at the camera</li>
+            <li>have a plain expression and your mouth closed</li>
+            <li>have your eyes open and visible</li>
+            <li>not have hair in front of your eyes</li>
+            <li>
+              not have a head covering (unless it’s for religious or medical
+              reasons)
+            </li>
+            <li>not have anything covering your face</li>
+            <li>not have any shadows on your face or behind you</li>
+          </ul>
+        </div>
+      </details>
       
 
       <button class="govuk-button" data-module="govuk-button">Continue</button>

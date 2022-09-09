@@ -1,23 +1,28 @@
 {% extends "layout.html" %} {% block pageTitle %} {{
 serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+{{ govukPhaseBanner({ tag: {
+    text: "alpha"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'}) }}
 <a class="govuk-back-link" href="/govuk_account_check">Back</a>
 {% endblock %} {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-l"> Sign in to your GOV.UK account</h1>
+    <h1 class="govuk-heading-l"> Sign in with your GOV.UK account</h1>
 
 
-    <form class="form" action="/govuk_account_password" method="post">
+    <form class="form" action="/govuk_account_sign_in_input" method="post">
     
     {{ govukInput({
       label: {
         text: "Enter your email address to sign in."
       },
       classes: "govuk-input--width-20",
-      id: "width-20",
-      name: "width-20",
-      value: data["govuk_question_email"]
+      id: "govuk_question_email",
+      name: "govuk_question_email",
+      value: data["govuk_question_email"],
+      errorMessage: error
     }) }}
     
       <button class="govuk-button" data-module="govuk-button">

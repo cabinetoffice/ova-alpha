@@ -1,10 +1,22 @@
-const express = require("express");
-const router = express.Router();
+const NotifyClient = require('notifications-node-client').NotifyClient
+const notify = new NotifyClient(process.env.NOTIFYAPIKEY)
+const express = require('express')
+const router = express.Router()
 // Add your routes here - above the module.exports line
-const passport = require("passport");
-const { Issuer, Strategy, generators, custom } = require("openid-client");
-const pem2jwk = require("rsa-pem-to-jwk");
-const e = require("express");
+// const passport = require('passport')
+// const { Issuer, Strategy, generators, custom } = require('openid-client')
+// const pem2jwk = require('rsa-pem-to-jwk')
+const { v4: uuidv4 } = require('uuid')
+const { generateCustomUuid } = require('custom-uuid')
+const validator = require('validator')
+
+const {
+  getFakeDIClaimResponse
+} = require('./assets/javascripts/fakeDIClaimJWT')
+const {
+  getClaimNames,
+  getPreviousNames
+} = require('./assets/javascripts/getClaimNames')
 
 // These keys are base64 encoded in .env
 // const privatekey = Buffer.from(process.env.RSA_PRIVATE_KEY, 'base64').toString('utf8').replace(/\\n/gm, '\n')
@@ -86,147 +98,566 @@ const e = require("express");
 //   })
 // })
 
-router.post("/eligibility-one", function (req, res) {
-  const formermember = req.body["former-member"];
+router.post('/sp4v1_start_veteran_verify_choice', function (req, res) {
+  const answer = req.session.data.start_veteran_match_status
+
+  if (!answer) {
+    const error = { text: "Select 'happy path' or 'unhappy path'" }
+    return res.render('index', { error })
+  }
+
+  if (answer === 'Success') {
+    res.redirect('/sp4v1_start_veteran_verify')
+  }
+
+  if (answer === 'Fail') {
+    res.redirect('/sp4v1_start_veteran_verify')
+  }
+})
+
+router.post('/eligibility-one', function (req, res) {
+  const formermember = req.body['former-member']
 
   if (!formermember) {
-    error = { text: "Select 'Yes' or 'No'" };
-    return res.render("eligibility-one", { error }); // relative URL, for reasons unknown
+    const error = { text: "Select 'Yes' or 'No'" }
+    return res.render('eligibility-one', { error }) // relative URL, for reasons unknown
   }
 
-  if (formermember == "no") {
-    res.redirect("/ineligible");
+  if (formermember === 'no') {
+    res.redirect('/ineligible')
   } else {
-    res.redirect("/eligibility-two");
+    res.redirect('/eligibility-two')
   }
-});
+})
 
-router.post("/eligibility-two", function (req, res) {
-  ukresident = req.body["uk-resident"];
+router.post('/eligibility-two', function (req, res) {
+  const ukresident = req.body['uk-resident']
 
   if (!ukresident) {
-    error = { text: "Select 'Yes' or 'No'" };
-    return res.render("eligibility-two", { error });
+    const error = { text: "Select 'Yes' or 'No'" }
+    return res.render('eligibility-two', { error })
   }
 
-  if (ukresident == "no") {
-    res.redirect("/ineligible");
+  if (ukresident === 'no') {
+    res.redirect('/ineligible_non_resident')
   } else {
-    res.redirect("/govuk_create_or_sign_in");
+    res.redirect('/govuk_account_check')
   }
-});
+})
+
+// router.post("/eligibility-three", function (req, res) {
+//   post2005 = req.body["post-2005"];
+
+//   if (!post2005) {
+//     const error = { text: "Select 'Yes' or 'No'" };
+//     return res.render("eligibility-three", { error });
+//   }
+
+//   if (post2005) {
+//     res.redirect("/govuk_account_check");
+//   }
+// });
 
 /* This is as far as I got before going on leave. Sorry. */
-router.post("/question_id_form", function (req, res) {
+router.post('/question_id_form', function (req, res) {
   res.send(
     "This is where the journey comes to a screeching halt. Sorry. Please see the <a href='https://drive.google.com/file/d/1DRK4h-TRTeDHjioJRtVo3V6MJVeZTwJ3/view'>TO BE flow, in particular, the 'Verification delivery' part."
-  );
-});
+  )
+})
 
-router.post("/govuk_account_check", function (req, res) {
-  var answer = req.session.data["gov_uk_account_check"];
+router.post('/govuk_account_check', function (req, res) {
+  const answer = req.session.data.gov_uk_account_check
 
   if (!answer) {
-    error = { text: "Select 'Yes' or 'No'" };
-    return res.render("govuk_account_check", { error });
+    const error = { text: "Select 'Yes' or 'No'" }
+    return res.render('govuk_account_check', { error })
   }
 
-  if (answer == "yes") {
-    res.redirect("/govuk_account_sign_in");
+  if (answer === 'yes') {
+    res.redirect('/govuk_account_sign_in')
   } else {
-    res.redirect("/govuk_account_sign_in");
+    res.redirect('/govuk_create_or_sign_in')
   }
-});
+})
 
-router.post("/question_id_choice_route", function (req, res) {
-  let answer = req.body["id_choice"];
+router.post('/govuk_account_sign_in_input', function (req, res) {
+  const answer = req.session.data.govuk_question_email
 
   if (!answer) {
-    error = { text: "Please choose your preferred card format" };
-    return res.render("question_id_choice", { error });
+    const error = { text: 'Enter the email address you registered on GOV.UK' }
+    return res.render('govuk_account_sign_in', { error })
   }
 
-  if (answer) {
-    res.redirect("/govuk_use_photo");
+  if (answer && validator.isEmail(answer)) {
+    res.redirect('/govuk_account_password')
+  } else {
+    const error = { text: 'Enter a valid email address' }
+    return res.render('govuk_account_sign_in', { error })
   }
-});
+})
 
-router.post("/govuk_use_photo", function (req, res) {
-  let answer = req.body["govuk_user_photo"];
- 
-  if (!answer) {
-    error = { text: "Select 'Yes' or 'No'" };
-    return res.render("govuk_use_photo", { error });
-  }
-
-  if (answer) {
-    res.redirect("/govuk_use_address");
-  }
-});
-
-router.post("/govuk_use_address", function (req, res) {
-  let answer = req.body["govuk_user_address"];
+router.post('/govuk_account_password_input', function (req, res) {
+  const answer = req.session.data.govuk_password
 
   if (!answer) {
-    error = { text: "Select 'Yes' or 'No'" };
-    return res.render("govuk_use_address", { error });
+    const error = { text: 'Enter the password you registered on GOV.UK' }
+    return res.render('govuk_account_password', { error })
   }
 
   if (answer) {
-    res.redirect("/govuk_use_email");
+    res.redirect('/govuk_account_sign_in_confirmed')
   }
-});
+})
 
-router.post("/govuk_use_email", function (req, res) {
-  let answer = req.body["govuk_user_email"];
+router.post('/govuk_create_check_email_code', function (req, res) {
+  const answer = req.session.data.govuk_email_code
 
   if (!answer) {
-    error = { text: "Select 'Yes' or 'No'" };
-    return res.render("govuk_use_email", { error });
+    const error = { text: 'Enter the 6 digit code sent to you' }
+    return res.render('govuk_create_check_email', { error })
   }
 
   if (answer) {
-    res.redirect("/govuk_vetcard_communications_check");
+    res.redirect('/govuk_account_sign_in_confirmed')
   }
-});
+})
 
-router.post("/govuk_vetcard_communications_check", function (req, res) {
-  let answer = req.body["communications_choice"];
-
-  if (answer === "_unchecked") {
-    error = { text: "Please select an option" };
-    return res.render("govuk_vetcard_communications_check", { error });
-  }
-
-  if (answer) {
-    res.redirect("/govuk_vetcard_account_summary");
-  }
-});
-
-router.post("/question_served_with", function (req, res) {
-  let answer = req.body["branch-served-with"];
+router.post('/question_service_number_input', function (req, res) {
+  const answer = req.session.data.question_service_number
 
   if (!answer) {
-    error = { text: "Please select an option" };
-    return res.render("question_served_with", { error });
+    const error = { text: 'Enter your service number' }
+    return res.render('question_service_number', { error })
   }
 
-  if (answer) {
-    res.redirect("/vetcard_communications_choice");
+  if (answer && answer.length === 11) {
+    res.redirect('/question_enlistment_date')
+  } else {
+    const error = {
+      text: 'Enter a valid service number length of 11 characters'
+    }
+    return res.render('question_service_number', { error })
   }
-});
+})
 
-router.post("/vetcard_communications_choice", function (req, res) {
-  let answer = req.body["vetcard_comms_choice"];
+router.post('/question_choice_enlistment_date', function (req, res) {
+  const enlistmentYear = req.session.data['enlistment-year-year']
+  const dischargeYear = req.session.data['discharge-year-year']
+
+  if (!enlistmentYear) {
+    const error = { text: 'Enter a value for the year' }
+    return res.render('question_enlistment_date', { error })
+  }
+
+  if (
+    dischargeYear &&
+    enlistmentYear &&
+    validator.isBefore(dischargeYear, enlistmentYear)
+  ) {
+    const error = { text: 'Enlistment year can not be before discharge year' }
+    return res.render('question_enlistment_date', { error })
+  }
+
+  if (
+    enlistmentYear &&
+    validator.isAfter(enlistmentYear, '1939') &&
+    validator.isBefore(enlistmentYear)
+  ) {
+    res.redirect('/question_discharge_date')
+  } else {
+    const error = { text: 'Enter a valid year' }
+    return res.render('question_enlistment_date', { error })
+  }
+})
+
+router.post('/question_choice_discharge_date', function (req, res) {
+  const dischargeYear = req.session.data['discharge-year-year']
+  const enlistmentYear = req.session.data['enlistment-year-year']
+
+  if (!dischargeYear) {
+    const error = { text: 'Enter a value for the year' }
+    return res.render('question_discharge_date', { error })
+  }
+
+  if (
+    dischargeYear &&
+    validator.isBefore(dischargeYear) && // is before today
+    validator.isAfter(dischargeYear, '1939') &&
+    (validator.isAfter(dischargeYear, enlistmentYear) ||
+      dischargeYear === enlistmentYear)
+  ) {
+    // set up DI claim names
+    const birthYear = Number(req.session.data['enlistment-year-year']) - 20
+    req.session.data.birthYear = birthYear
+
+    // Identity claim set up
+    const claimNames = getClaimNames(getFakeDIClaimResponse(birthYear)) // All the names
+
+    // Set up session storage for current & previous names
+    req.session.data.current_DI_name = claimNames[0]
+    const previousNames = getPreviousNames(claimNames)
+    req.session.data.previous_DI_names = previousNames
+
+    previousNames.forEach((name, index) => {
+      req.session.data[`previous_DI_name_${index + 1}`] = name
+    })
+
+    // console.log("Data Storage!!!---:", req.session.data);
+
+    res.redirect('/question_name_from_DI')
+  } else {
+    const error = { text: 'Enter a valid year' }
+    return res.render('question_discharge_date', { error })
+  }
+})
+
+router.post('/question_name_from_DI', function (req, res) {
+  const nameAtDischarge = req.session.data.name_at_discharge
+
+  if (!nameAtDischarge) {
+    const error = { text: 'Select a name' }
+    return res.render('question_name_from_DI', { error })
+  }
+
+  if (nameAtDischarge) {
+    return res.redirect('/question_NIN')
+  }
+})
+
+router.post('/question_NIN_input', function (req, res) {
+  let answer = req.session.data.national_insurance_number
+  const regexUse = new RegExp(process.env.NIN_REGEX)
 
   if (!answer) {
-    error = { text: "Please select an option" };
-    return res.render("vetcard_communications_choice", { error });
+    const error = { text: 'Enter your national insurance number' }
+    return res.render('question_NIN', { error })
   }
 
   if (answer) {
-    res.redirect("/vetcard_account_summary_extra");
+    answer = answer.replace(/ /g, '')
   }
-});
 
-module.exports = router;
+  if (answer === 'QQ123456C' || (answer && regexUse.test(answer))) {
+    res.redirect('/question_served_with')
+  } else {
+    const error = {
+      text: 'Enter a National Insurance number in the correct format'
+    }
+    return res.render('question_NIN', { error })
+  }
+})
+
+router.post('/question_id_route', function (req, res) {
+  const answer = req.body.id_choice
+
+  if (!answer) {
+    const error = { text: 'Choose your preferred card format' }
+    return res.render('question_id_type', { error })
+  }
+
+  if (answer) {
+    res.redirect('/govuk_use_photo')
+  }
+})
+
+router.post('/govuk_use_photo', function (req, res) {
+  const answer = req.body.govuk_user_photo
+
+  if (!answer) {
+    const error = { text: "Select 'Yes' or 'No'" }
+    return res.render('govuk_use_photo', { error })
+  }
+
+  if (answer === 'yes') {
+    res.redirect('/govuk_use_address')
+  }
+
+  if (answer === 'no') {
+    res.redirect('/govuk_update_details_sign_in_photo')
+  }
+})
+
+router.post('/govuk_use_address_choice', function (req, res) {
+  const answer = req.body.govuk_user_address
+
+  if (!answer) {
+    const error = { text: "Select 'Yes' or 'No'" }
+    return res.render('govuk_use_address', { error })
+  }
+
+  if (answer === 'yes') {
+    res.redirect('/govuk_use_email')
+  }
+
+  if (answer === 'no') {
+    res.redirect('/govuk_update_details_sign_in_address')
+  }
+})
+
+router.post('/govuk_use_email', function (req, res) {
+  const answer = req.body.govuk_user_email
+
+  if (!answer) {
+    const error = { text: "Select 'Yes' or 'No'" }
+    return res.render('govuk_use_email', { error })
+  }
+
+  if (answer === 'yes') {
+    res.redirect('/govuk_vetcard_comms')
+  }
+
+  if (answer === 'no') {
+    res.redirect('/govuk_update_details_sign_in_email')
+  }
+})
+
+router.post('/govuk_vetcard_comms', function (req, res) {
+  const answer = req.body.govuk_comms_choice
+
+  if (!answer) {
+    const error = { text: "Select 'Yes' or 'No'" }
+    return res.render('govuk_vetcard_comms', { error })
+  }
+
+  if (answer === 'Yes') {
+    res.redirect('/govuk_vetcard_communications_preference')
+  }
+
+  if (answer === 'No') {
+    res.redirect('/vetcard_account_summary_extra')
+  }
+})
+
+router.post('/govuk_vetcard_communications_preference', function (req, res) {
+  const answer = req.body.communications_choice
+
+  if (answer === '_unchecked') {
+    const error = { text: 'Select at least one option' }
+    return res.render('govuk_vetcard_communications_preference', { error })
+  }
+
+  if (answer) {
+    res.redirect('/vetcard_account_summary_extra')
+  }
+})
+
+router.post('/govuk_vetcard_acc_summary_choice', function (req, res) {
+  const answer = req.session.data.id_choice
+  const matchStatus = req.session.data.start_veteran_match_status
+
+  if (matchStatus === 'Fail') {
+    res.redirect('/vetcard_application_complete_match_fail')
+  }
+
+  if (answer === 'Physical card') {
+    res.redirect('/vetcard_application_complete_card_only')
+  }
+
+  if (answer === 'Digital card') {
+    res.redirect('/vetcard_application_complete_digital_only')
+  }
+
+  if (answer === 'Physical and Digital') {
+    res.redirect('/vetcard_application_complete_card_digital')
+  }
+})
+
+router.post('/vetcard_account_summary_choice', function (req, res) {
+  let idChoice = req.session.data.id_choice
+  const fullName = req.session.data.full_name
+  const postalAddress = req.session.data.postal_address
+  const emailAddress = req.session.data.govuk_question_email
+  const serviceNumber = req.session.data.question_service_number
+
+  const matchStatus = req.session.data.start_veteran_match_status
+
+  const personalisation = {
+    full_name: fullName.toString(),
+    postal_address: postalAddress.toString(),
+    submission_reference: uuidv4(),
+    service_number: serviceNumber.toString()
+  }
+
+  if (!idChoice) {
+    idChoice = 'Physical card'
+  }
+
+  if (matchStatus === 'Fail') {
+    notify
+      .sendEmail(
+        process.env.TEST_EMAIL_UNHAPPY_PATH_TEMPLATE,
+        // `emailAddress` here needs to match the name of the form field in
+        // your HTML page
+        emailAddress.toString(),
+        {
+          personalisation,
+          reference: uuidv4()
+        }
+      )
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err.response.data))
+
+    res.redirect('/vetcard_application_complete_match_fail')
+    return false
+  }
+
+  if (idChoice === 'Physical card') {
+    notify
+      .sendEmail(
+        process.env.TEST_EMAIL_CARD_ONLY_TEMPLATE,
+        // `emailAddress` here needs to match the name of the form field in
+        // your HTML page
+        emailAddress.toString(),
+        {
+          personalisation,
+          reference: uuidv4()
+        }
+      )
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err.response.data))
+
+    res.redirect('/vetcard_application_complete_card_only')
+  }
+
+  if (idChoice === 'Digital card') {
+    notify
+      .sendEmail(
+        process.env.TEST_EMAIL_DIGITAL_ONLY_TEMPLATE,
+        // `emailAddress` here needs to match the name of the form field in
+        // your HTML page
+        emailAddress.toString(),
+        {
+          personalisation,
+          reference: uuidv4()
+        }
+      )
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err.response.data))
+
+    res.redirect('/vetcard_application_complete_digital_only')
+  }
+
+  if (idChoice === 'Physical and Digital') {
+    notify
+      .sendEmail(
+        process.env.TEST_EMAIL_CARD_AND_DIGITAL_TEMPLATE,
+        // `emailAddress` here needs to match the name of the form field in
+        // your HTML page
+        emailAddress.toString(),
+        {
+          personalisation,
+          reference: uuidv4()
+        }
+      )
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err.response.data))
+
+    res.redirect('/vetcard_application_complete_card_digital')
+  }
+})
+
+router.post('/question_served_with', function (req, res) {
+  const answer = req.body['branch-served-with']
+
+  if (!answer) {
+    const error = { text: 'Select an option' }
+    return res.render('question_served_with', { error })
+  }
+
+  if (answer) {
+    res.redirect('/question_id_type')
+  }
+})
+
+router.post('/vetcard_communications_choice', function (req, res) {
+  const answer = req.body.vetcard_comms_choice
+
+  if (!answer) {
+    const error = { text: 'Select an option' }
+    return res.render('vetcard_communications_choice', { error })
+  }
+
+  if (answer) {
+    res.redirect('/vetcard_account_summary_extra')
+  }
+})
+
+// The URL here needs to match the URL of the page that the user is on
+// when they type in their email address
+router.post('/notify_email_address_page', function (req, res) {
+  let idChoice = req.session.data.id_choice
+  const fullName = req.session.data.full_name
+  const postalAddress = req.session.data.postal_address
+
+  const personalisation = {
+    full_name: fullName.toString(),
+    postal_address: postalAddress.toString(),
+    submission_reference: uuidv4(),
+    service_number: generateCustomUuid('123456789ABC', 11) // ⇨ 'B5B66992471'
+  }
+
+  if (!req.body.emailAddress) {
+    const error = { text: 'Enter a valid email address' }
+    return res.render('notify_email_address_page', { error })
+  }
+
+  if (!idChoice) {
+    idChoice = 'Physical card'
+  }
+
+  if (idChoice === 'Physical card') {
+    notify
+      .sendEmail(
+        process.env.TEST_EMAIL_CARD_ONLY_TEMPLATE,
+        // `emailAddress` here needs to match the name of the form field in
+        // your HTML page
+        req.body.emailAddress,
+        {
+          personalisation,
+          reference: uuidv4()
+        }
+      )
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err.response.data))
+
+    res.redirect('/confirmation_page')
+  }
+
+  if (idChoice === 'Digital card') {
+    notify
+      .sendEmail(
+        process.env.TEST_EMAIL_DIGITAL_ONLY_TEMPLATE,
+        // `emailAddress` here needs to match the name of the form field in
+        // your HTML page
+        req.body.emailAddress,
+        {
+          personalisation,
+          reference: uuidv4()
+        }
+      )
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err.response.data))
+
+    res.redirect('/confirmation_page')
+  }
+
+  if (idChoice === 'Physical and Digital') {
+    notify
+      .sendEmail(
+        process.env.TEST_EMAIL_CARD_AND_DIGITAL_TEMPLATE,
+        // `emailAddress` here needs to match the name of the form field in
+        // your HTML page
+        req.body.emailAddress,
+        {
+          personalisation,
+          reference: uuidv4()
+        }
+      )
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err.response.data))
+
+    res.redirect('/confirmation_page')
+  }
+})
+
+module.exports = router

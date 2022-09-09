@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+   {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({ tag: {
+    text: "alpha"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'}) }}
+  <a class="govuk-back-link" href="/govuk_use_photo">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="question_service_number" method="post">
+
+            {{ govukInput({
+          label: {
+            text: "Sign in to your GOV.UK account to add a new photo",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Enter your email address to sign in."
+          },
+          id: "national_insurance_number",
+          name: "national_insurance_number-name"
+        }) }}
+
+      
+        {# <button class="govuk-button" data-module="govuk-button">Continue</button> #}
+        {{ govukButton({
+        text: "Continue",
+        href: "/govuk_upload_photo"
+      }) }}
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

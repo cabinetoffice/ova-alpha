@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" method="post">
+        
+        {{ govukInput({
+          label: {
+            text: "Enter a valid email address",
+            classes: "govuk-label--m",
+            isPageHeading: true
+          },
+          id: "email-Address",
+          name: "emailAddress",
+          value: data["govuk_question_email"],
+          type: "email",
+          autocomplete: "email",
+          spellcheck: false,
+          errorMessage: error
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        })}}
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

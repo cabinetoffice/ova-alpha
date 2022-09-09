@@ -1,0 +1,47 @@
+{% extends "layout.html" %} {% block pageTitle %}  {{
+serviceName }} – GOV.UK Prototype Kit {% endblock %} 
+
+{% block beforeContent %}
+    {{ govukPhaseBanner({ tag: {
+    text: "alpha"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">You are not eligible for a Veteran ID card</h1>
+
+        <p>To apply for a veteran's ID card, a current requirement is that you must be a UK resident.
+        </p>
+        
+        <p>This service is in development. We are working on making sure it's available to veterans who live overseas soon. 
+        </p>
+
+        {% from "govuk/components/button/macro.njk" import govukButton %}
+        
+        <p><a href="https://www.gov.uk/guidance/veterans-uk-contact-us" target="_new">For help or for more information visit Veterans UK</a></p>
+
+    </div>
+  </div>
+{% endblock %}
+{% if useAutoStoreData %}
+  {% block footer %}
+    {{ govukFooter({
+      meta: {
+        items: [
+          {
+            href: "https://govuk-prototype-kit.herokuapp.com/",
+            text: "GOV.UK Prototype Kit " + releaseVersion
+          },
+          {
+            href: "/prototype-admin/clear-data",
+            text: "Clear data"
+          }
+        ],
+        visuallyHiddenTitle: "Footer links"
+      }
+    }) }}
+  {% endblock %}
+{% endif %}

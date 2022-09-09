@@ -5,6 +5,10 @@
 {% endblock %}
 
 {% block beforeContent %}
+{{ govukPhaseBanner({ tag: {
+    text: "alpha"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'}) }}
   <a class="govuk-back-link" href="/govuk_account_sign_in_confirmed">Back</a>
 {% endblock %}
 
@@ -13,9 +17,9 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">What was your Service Number?</h1>
+      <h1 class="govuk-heading-l">What was your service number?</h1>
 
-      <form class="form" action="question_enlistment_date" method="post">
+      <form class="form" action="question_service_number_input" method="post">
 
         {{ govukInput({
           label: {
@@ -25,19 +29,19 @@
         classes: "govuk-input--width-20",
         id: "question_service_number",
         name: "question_service_number",
-        value: data["service_number"]
+        value: data["question_service_number"],
+        errorMessage: error
         }) }}
         
         <details class="govuk-details" data-module="govuk-details">
           <summary class="govuk-details__summary">
             <span class="govuk-details__summary-text">
-              Questions about your service number?
+              Help with your service number
             </span>
           </summary>
           <div class="govuk-details__text">
           <div>
-            <p>If you have more than one service number,  please use your most recent.</p>
-            <p>If you don't know your service number you will need to contact your local veterans centre</p>
+            <p>If you don't know your service number, contact <a href="https://www.gov.uk/guidance/veterans-uk-contact-us" target="_new">Veterans UK</a></p>
           </div>
         </details>
 

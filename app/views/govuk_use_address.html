@@ -1,19 +1,26 @@
 {% extends "layout.html" %} {% block pageTitle %} {{
 serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+{{ govukPhaseBanner({ tag: {
+    text: "alpha"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'}) }}
 <a class="govuk-back-link" href="/govuk_use_photo">Back</a>
 {% endblock %} {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-l">Use the address from your GOV.UK account</h1>
+    <h1 class="govuk-heading-l">Use the address from your GOV.UK account for your delivery address</h1>
     
-     <p>We found the following address from your GOV.UK account</p>
+     <p>We found the following address from your GOV.UK account:</p>
      
+     {# <h3 class="govuk-heading-s">{{ data['postal_address']}}</h3> #}
      <p>{{ data['postal_address']}}</p>
      
-    <h1 class="govuk-heading-s">Do you want us to deliver your Veteran Card to this address?</h1>
+     <p>If you want to change these details you will need to update your GOV.UK account.</p>
+     
+    <h1 class="govuk-heading-s">Do you want us to deliver your veteran's ID card to this address?</h1>
     
-    <form class="form" action="govuk_use_address" method="post">
+    <form class="form" action="govuk_use_address_choice" method="post">
         {{ govukRadios({
           idPrefix: "govuk_user_address",
           name: "govuk_user_address",

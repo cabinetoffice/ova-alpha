@@ -1,0 +1,65 @@
+{% extends "layout.html" %} {% block pageTitle %} Question page template – {{
+serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+{{ govukPhaseBanner({ tag: { text: "alpha" }, html: 'This is a new service –
+your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'})
+}}
+<a class="govuk-back-link" href="/question_discharge_date">Back</a>
+{% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="question_name_from_DI" method="post">
+      
+    {% set itemsArr = [] %}
+    {% set itemsArr = (itemsArr.push(
+                                     {
+                                       value:data["current_DI_name"], text:data["current_DI_name"], 
+                                       checked: checked("name_at_discharge", data["current_DI_name"]), 
+                                       hint: { text: "This is what we have on record as the name you currently use."}
+                                      }
+                                     ), itemsArr) %}
+    
+    {% for name in data["previous_DI_names"] %}
+     {% set itemsArr = (itemsArr.push({value:name, text:name, checked: checked("name_at_discharge", name)}), itemsArr) %}
+    {% endfor %}
+      
+      {{ govukRadios({
+        idPrefix: "name_at_discharge",
+        name: "name_at_discharge",
+        fieldset: {
+          legend: {
+            text: "What name were you using when you left the armed forces?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: itemsArr,
+        errorMessage: error
+      }) }}
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Why are we asking this?
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p>We found these names for you in your GOV.UK account:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              We will use the name you used while serving to find your military
+              records
+            </li>
+            <li>
+              Your veteran's ID card will have the name you currently use on it
+            </li>
+          </ul>
+        </div>
+      </details>
+      
+      <button class="govuk-button" id="btn" data-module="govuk-button">Continue</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %} 

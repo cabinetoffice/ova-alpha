@@ -4,7 +4,14 @@
 
 module.exports = {
   // Service name used in header. Eg: 'Renew your passport'
-  serviceName: 'Apply for a Veteran\'s Card',
+  serviceName: 'Apply for a Veteran ID card',
+
+  // URL FOR THE HEROKU APP (used in footer when running locally)
+  herokuURL: 'https://ova-prototype-v1.herokuapp.com/',
+
+  // URL for the repo (used in footer)
+  githubURL:
+    'https://github.com/tony-griffin/ova-verification-alpha-phase-prototype',
 
   // Default port that prototype runs on
   port: '3000',
@@ -27,5 +34,4 @@ module.exports = {
 
   // Enable or disable Browser Sync (local development only)
   useBrowserSync: 'true'
-
 }

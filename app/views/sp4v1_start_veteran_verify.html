@@ -1,7 +1,13 @@
-{% extends "layout.html" %} {% block pageTitle %} {{
-serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block header %}
+{% extends "layout.html" %} {% block pageTitle %} {{ serviceName }} – GOV.UK
+Prototype Kit {% endblock %} {% block header %}
 <!-- Blank header with no service name for the start page -->
-{{ govukHeader() }} {% endblock %} {% block beforeContent %}
+{{ govukHeader() }} {% endblock %} 
+{% block beforeContent %}
+{{ govukPhaseBanner({ tag: {
+    text: "alpha"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'}) }}
+
 <div class="govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
     <li class="govuk-breadcrumbs__list-item">
@@ -18,42 +24,29 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block header %}
 {% endblock %} {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-l">Apply for a veteran card</h1>
+    <h1 class="govuk-heading-l">Apply for a veteran’s ID card</h1>
 
-    <p>Use this service to:</p>
+    <p>Use this service to apply for a card that you can use to identify yourself as a veteran of the UK armed forces.
+    </p>
+    
+    <p>The card lets you access services and benefits for veterans.
+    </p>
+
+    <h2 class="govuk-heading-m">What you need to apply</h2>
+
     <ul class="govuk-list govuk-list--bullet">
-      <li>Verify that you have served in HM Armed Forces</li>
-      <li>Apply for a veteran card</li>
+      <li>your service number</li>
+      <li>the branch of service you served with most recently</li>
+      <li>the year you enlisted</li>
+      <li>the year you left</li>
+      <li>your National Insurance number</li>
     </ul>
 
-    <p>You can use a veteran card to receive the recognition, support and benefits that only veterans are eligible for.</p>
-    <p>For more information on the support and benefits available visit <a href="https://www.gov.uk/government/organisations/veterans-uk">Veterans Gateway</a></p>
-    
-    <h2 class="govuk-heading-m">What you need to apply</h2>
-    
-    <p>To verify your identity you'll need:
-      <ul class="govuk-list govuk-list--bullet">
-        <li>a GOV.UK Sign In account</li>
-      </ul>
-    </p>
-    
-    <p>To verify your service:
-      <ul class="govuk-list govuk-list--bullet">
-        <li>your service number</li>
-        <li>the year you enlisted</li>
-        <li>the year you left service</li>
-      </ul>
-    </p>
-    
-     <p>To receive your digital and/or physical card:
-      <ul class="govuk-list govuk-list--bullet">
-        <li>an email address</li>
-        <li>a postal address to send the card to</li>
-      </ul>
-    </p>
-    
+  <p>You’ll also be asked to upload a passport-style photo.
+  </p>
+
     <a
-      href="/govuk_account_check"
+      href="/eligibility-one"
       role="button"
       draggable="false"
       class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8"
@@ -73,14 +66,19 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block header %}
       </svg>
     </a>
 
-    <h2 class="govuk-heading-m">Before you start</h2>
+    <h2 class="govuk-heading-m">Other ways to apply</h2>
 
-    <p>You can also <a href="https://www.postoffice.co.uk/identity" target="_new">register by post</a></p>
-    
-    <p>The online service is also avaibe in <a href="#">Welsh (Cymraeg)</a>.</p>
-    <p>You cannot register for this service if you're in the UK illegally.</p>
+    <p>
+      You can also
+      <a href="https://www.postoffice.co.uk/identity" target="_new"
+        >register by post</a
+      >
+    </p>
+
+    <p>
+      The online service is also available in <a href="#">Welsh (Cymraeg)</a>.
+    </p>
     <p><a href="#">Get help with this page</a></p>
-
   </div>
 
   <div class="govuk-grid-column-one-third">
@@ -89,22 +87,34 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block header %}
       <nav role="navigation" aria-labelledby="subsection-title">
         <ul class="govuk-list govuk-!-font-size-16">
           <li>
-            <a href="https://www.gov.uk/government/organisations/veterans-uk">
+            <a
+              href="https://www.gov.uk/guidance/veterans-uk-contact-us"
+              target="_new"
+            >
               Request records of deceased service personnel
             </a>
           </li>
           <li>
-            <a href="https://www.gov.uk/government/organisations/veterans-uk">
+            <a
+              href="https://www.gov.uk/guidance/veterans-uk-contact-us"
+              target="_new"
+            >
               Military service records
             </a>
           </li>
           <li>
-            <a href="https://www.gov.uk/government/organisations/veterans-uk">
+            <a
+              href="https://www.gov.uk/guidance/veterans-uk-contact-us"
+              target="_new"
+            >
               Military service request forms
             </a>
           </li>
           <li>
-            <a href="https://www.gov.uk/government/organisations/veterans-uk">
+            <a
+              href="https://www.gov.uk/guidance/veterans-uk-contact-us"
+              target="_new"
+            >
               Military service search forms
             </a>
           </li>
@@ -112,7 +122,10 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block header %}
             <a href="#">Ministry of Defence medal form</a>
           </li>
           <li>
-            <a href="https://www.gov.uk/government/organisations/veterans-uk">
+            <a
+              href="https://www.gov.uk/guidance/veterans-uk-contact-us"
+              target="_new"
+            >
               Veterans UK
             </a>
           </li>
