@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 // function getNameAtDischarge(validUntilDate, dischargeYear) {
 //   let matchDistance = {};
 //   matchDistance.validUntil = validUntilDate;
@@ -288,17 +290,17 @@
 //   return namesExport;
 // }
 
-let claimNames = ["Sandy Smith", "Sandy Williams", "Sandy Murphy"];
+const claimNames = ['Sandy Smith', 'Sandy Williams', 'Sandy Murphy']
 
-function getPreviousNames(claimNames) {
-  return claimNames.slice(1, claimNames.length);
+function getPreviousNames (claimNames) {
+  return claimNames.slice(1, claimNames.length)
 }
 
-function displayPreviousDIClaimNames(claimNames) {
-  let previousNames = getPreviousNames(claimNames);
-  let previousNamesHtml = [];
+function displayPreviousDIClaimNames (claimNames) {
+  const previousNames = getPreviousNames(claimNames)
+  const previousNamesHtml = []
 
-  let radioElementCurrent = `<div class="govuk-radios__item">
+  const radioElementCurrent = `<div class="govuk-radios__item">
               <input
                 class="govuk-radios__input"
                 id="current_DI_name"
@@ -315,10 +317,10 @@ function displayPreviousDIClaimNames(claimNames) {
                 class="govuk-hint govuk-radios__hint"
               >
                 We believe this is the most current verified name we have on record for you.
-              </div>`;
+              </div>`
 
   for (let index = 0; index < previousNames.length; index++) {
-    let radioElementPrevious = `<div class="govuk-radios__item">
+    const radioElementPrevious = `<div class="govuk-radios__item">
               <input
                 class="govuk-radios__input"
                 id="previous_DI_name_${index + 1}"
@@ -337,14 +339,14 @@ function displayPreviousDIClaimNames(claimNames) {
                 class="govuk-hint govuk-radios__hint"
               >
                 We believe this was is an older name you had previously used.
-              </div>`;
+              </div>`
 
-    previousNamesHtml.push(radioElementPrevious);
+    previousNamesHtml.push(radioElementPrevious)
   }
-  return previousNamesHtml;
+  return previousNamesHtml
 }
 
-displayPreviousDIClaimNames(claimNames);
+displayPreviousDIClaimNames(claimNames)
 
 // function getNameAtDischarge(validUntilDate) {
 //   let matchDistance = {};
@@ -383,3 +385,4 @@ displayPreviousDIClaimNames(claimNames);
 //   ) {
 //   }
 // }
+/* eslint-enable no-unused-vars */

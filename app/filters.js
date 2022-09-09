@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 module.exports = function (env) {
   /**
    * Instantiate object used to store the methods registered as a
@@ -305,16 +306,14 @@ module.exports = function (env) {
       // console.log('error for', date, 'format', format);
       return ''
       // throw "Error in formatDate: no date provided";
-    }
-    // Check for valid date
-    else if (dateFormat && moment(date, dateFormat).isValid()) {
+    } else if (dateFormat && moment(date, dateFormat).isValid()) {
+      // Check for valid date
       returnDate = moment(date, dateFormat)
     } else if (moment(date).isValid()) {
       returnDate = moment(date)
-    }
-    // Invalid date
-    else {
-      throw 'Error in formatDate: invalid date'
+    } else {
+      // Invalid date
+      throw new Error('Error in formatDate: invalid date')
     }
 
     switch (true) {
@@ -455,3 +454,4 @@ module.exports = function (env) {
   ------------------------------------------------------------------ */
   return filters
 }
+/* eslint-enable eqeqeq */
