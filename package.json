@@ -59,7 +59,7 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
-    "cypress": "^10.6.0",
+    "cypress": "^10.7.0",
     "eslint-plugin-cypress": "^2.12.1",
     "standard": "^17.0.0"
   },
