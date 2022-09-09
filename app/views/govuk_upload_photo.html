@@ -1,5 +1,9 @@
 {% extends "layout.html" %} {% block pageTitle %} Question page template – {{
 serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+{{ govukPhaseBanner({ tag: {
+    text: "alpha"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'}) }}
 <a class="govuk-back-link" href="/govuk_update_details_sign_in_photo">Back</a>
 {% endblock %} {% block content %}
 

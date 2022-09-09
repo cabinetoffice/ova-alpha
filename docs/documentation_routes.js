@@ -92,7 +92,7 @@ router.get('/templates/check-your-answers', function (req, res) {
 module.exports = router
 
 // Strip off markdown extensions if present and redirect
-var redirectMarkdown = function (requestedPage, res) {
+const redirectMarkdown = function (requestedPage, res) {
   if (requestedPage.slice(-3).toLowerCase() === '.md') {
     res.redirect(requestedPage.slice(0, -3))
   }

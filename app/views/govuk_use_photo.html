@@ -1,13 +1,23 @@
-{% extends "layout.html" %} {% block pageTitle %} {{
-serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+{% extends "layout.html" %} 
+
+{% block pageTitle %} {{
+serviceName }} – GOV.UK Prototype Kit 
+{% endblock %} 
+
+{% block beforeContent %}
+{{ govukPhaseBanner({ tag: {
+    text: "alpha"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'}) }}
 <a class="govuk-back-link" href="/question_id_type">Back</a>
-{% endblock %} {% block content %}
+{% endblock %} 
+{% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-l">Use the photo from your GOV.UK account for your Veteran ID card</h1>
+    <h1 class="govuk-heading-l">Use the photo from your GOV.UK account for your veteran ID card</h1>
     
-     <p>If you want to change this image then you will need to update your GOV.UK account</p>
+     <p>If you want to change this image, you will need to update your GOV.UK account</p>
      
     <img src="/public/images/govuk_head_photo.png" alt="User photo">
      

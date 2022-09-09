@@ -22,19 +22,15 @@ Example usage:
 // "national_insurance_number" : ["QQ 12 34 56 C"],
 // "service_number" : ["200210293847"],
 // "date-of-birth" : ["01", "06", "1960"],
-// "previous_name" : ["Sandy Williams"],
 */
 
 module.exports = {
   // Insert values here
-  "full_name" : ["Sandy Smith"],
-  
-  
-  "govuk_question_email" : [""],
-  "postal_address": ["14 Lime Court, Weston-super-mare BS22, 0AA"],
-  "phone_number": ["07700 900457"],
-  "birthYear": [""],
-  
-  "communications_choice" : ["N/A"]
-  
+  full_name: ['Sandy Smith'],
+  previous_name: ['Sandy Williams'],
+  govuk_question_email: [''],
+  postal_address: ['14 Lime Court, Weston-super-mare BS22, 0AA'],
+  phone_number: ['07700 900457'],
+  birthYear: [''],
+  communications_choice: ['N/A']
 }

@@ -1,9 +1,15 @@
 {% extends "layout.html" %} {% block pageTitle %} {{
-serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+serviceName }} – GOV.UK Prototype Kit {% endblock %} 
+{% block beforeContent %}
+{{ govukPhaseBanner({ tag: {
+    text: "alpha"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'}) }}
 <a class="govuk-back-link" href="/sp4v1_start_veteran_verify">Back</a>
 {% endblock %} {% block content %}
 
 <div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
     <form class="form" action="/eligibility-one" method="post">
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
@@ -34,7 +40,7 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
 
       <button class="govuk-button" data-module="govuk-button">Continue</button>
     </form>
-
+  </div>
 </div>
 
 {% endblock %}

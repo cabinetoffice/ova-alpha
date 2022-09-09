@@ -5,7 +5,11 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/question_discharge_date">Back</a>
+  {{ govukPhaseBanner({ tag: {
+    text: "alpha"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'}) }}
+  <a class="govuk-back-link" href="/question_served_with">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -22,7 +26,7 @@
         name: "id_choice",
         fieldset: {
           legend: {
-            text: "What format do you want your Veteran ID card in?",
+            text: "What format do you want your veteran's ID card in?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
@@ -47,10 +51,17 @@
         errorMessage: error
       }) }}
        
-       {{ govukDetails({
-        summaryText: "How do I use my card",
-        text: "The ID card is issued as both a physical card (like a driving licence) and a digital card, which you can store on a smartphone or other digital device. Both of them can be used face to face, by presenting them in person. They can also both be used online or over the phone by providing the unique identification number. "
-      }) }}
+       <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            How do I use my card
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p>The ID card is issued as both a physical card (like a driving licence) and a digital card, which you can store on a smartphone or other digital device.</p>
+          <p>Both of them can be used face to face, by presenting them in person. They can also both be used online or over the phone by providing the unique identification number.</p>
+        </div>
+      </details>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
 

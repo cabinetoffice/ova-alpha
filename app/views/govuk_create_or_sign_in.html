@@ -1,5 +1,11 @@
 {% extends "layout.html" %} {% block pageTitle %} {{
-serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
+serviceName }} – GOV.UK Prototype Kit {% endblock %} 
+
+{% block beforeContent %}
+{{ govukPhaseBanner({ tag: {
+    text: "alpha"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'}) }}
 <a class="govuk-back-link" href="/govuk_account_check">Back</a>
 {% endblock %} {% block content %}
 
@@ -19,7 +25,7 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block beforeContent %}
       </button>
     </form>
 
-    <p>If you already have a GOV.UK account you can <a href="/govuk_question_email">sign in</a></p>
+    <p>If you already have a GOV.UK account you can <a href="/govuk_account_sign_in">sign in</a></p>
 
     <details class="govuk-details" data-module="govuk-details">
       <summary class="govuk-details__summary">

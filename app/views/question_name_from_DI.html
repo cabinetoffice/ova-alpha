@@ -15,16 +15,7 @@ your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'})
                                      {
                                        value:data["current_DI_name"], text:data["current_DI_name"], 
                                        checked: checked("name_at_discharge", data["current_DI_name"]), 
-                                       hint: { text: "We believe this is the most current verified name we have on
-                record for you."}
-                                      }
-                                     ), itemsArr) %}
-    
-    {% set itemsArr = (itemsArr.push(
-                                     {
-                                       value:data["likely_discharge_name"], text:data["likely_discharge_name"], 
-                                       checked: checked("name_at_discharge", data["likely_discharge_name"]), 
-                                       hint: { text: "We believe this name to be the name you used at the time of discharge"}
+                                       hint: { text: "This is what we have on record as the name you currently use."}
                                       }
                                      ), itemsArr) %}
     
@@ -37,7 +28,7 @@ your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'})
         name: "name_at_discharge",
         fieldset: {
           legend: {
-            text: "What was the name you were using when you left the armed forces?",
+            text: "What name were you using when you left the armed forces?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
@@ -60,7 +51,7 @@ your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'})
               records
             </li>
             <li>
-              The veteran's ID card will have the name you currently use on it
+              Your veteran's ID card will have the name you currently use on it
             </li>
           </ul>
         </div>
