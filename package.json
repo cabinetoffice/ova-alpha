@@ -30,7 +30,7 @@
     "cross-spawn": "^7.0.2",
     "custom-uuid": "^3.0.0",
     "del": "^6.0.0",
-    "dotenv": "^10.0.0",
+    "dotenv": "^16.0.2",
     "express": "^4.17.1",
     "express-session": "^1.17.3",
     "fancy-log": "^2.0.0",
